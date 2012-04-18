@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{cd1cca70-e67e-4cda-bc1d-54d8f2ba0780}</ProjectGuid>
+    <ArchitectureToolsVersion>1.0.0.0</ArchitectureToolsVersion>
+    <Name>Oracle</Name>
+    <RootNamespace>Oracle</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" />
+  <ItemGroup>
+    <Content Include="Scripts\1-Tables\01-TPW_PUMP_CONFIG.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\02-TPW_PUMP_SERVER.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\03-TPW_WF_ACTIVITY.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\04-TPW_WF_STATE.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\05-TPW_WF_EVENT.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\06-TPW_WF_ACTIVITY.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\07-TPW_WF_STATE_MACHINE.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\08-TPW_WK_LOG.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\09-TPW_WK_LOG_ARCHIVE.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\11-TPW_PJOB.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\12-TPW_PJOB_ARCHIVE.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\13-TPW_TASK.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\14-TPW_TASK_ARCHIVE.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\1-Tables\15-TPW_SYS_ERROR.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\2-Views\01-VIEW_TPW_PJOB.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\2-Views\02-VIEW_TPW_TASK.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\2-Views\03-VIEW_TPW_WK_LOG.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\2-Views\04-VIEW_TPW_PJOB_STATE_MACHINE.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\3-Packages\01-TPW_SERVICE.pck">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\3-Packages\02-TPW_SCHEDULER.pck">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\3-Packages\03-TPW_TEST.pck">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\4-Triggers\01-TRG_TPW_WF_ACTIVITY.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\4-Triggers\02-TRG_TPW_WF_STATE_MACHINE.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\5-InitData\01-TPW_PUMP_CONFIG.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\5-InitData\02-TPW_WF_ACTIVITY.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\5-InitData\03-TPW_WF_STATE.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\5-InitData\04-TPW_WF_ACTIVITY.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\5-InitData\05-TPW_WF_EVENT.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Scripts\5-InitData\06-TPW_WF_STATE_MACHINE.sql">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ModelDefinition\Oracle.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\1-Tables" />
+    <Folder Include="Scripts\2-Views" />
+    <Folder Include="Scripts\3-Packages" />
+    <Folder Include="Scripts\4-Triggers" />
+    <Folder Include="Scripts\5-InitData" />
+  </ItemGroup>
+</Project>
