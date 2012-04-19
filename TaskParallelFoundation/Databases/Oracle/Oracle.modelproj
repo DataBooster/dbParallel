@@ -108,6 +108,9 @@
     <Content Include="Scripts\5-InitData\06-TPW_WF_STATE_MACHINE.sql">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Scripts\6-ResetData\0-TPW_RESET_DATA.sql">
+      <SubType>Content</SubType>
+    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\Oracle.uml">
       <SubType>Content</SubType>
@@ -118,5 +121,6 @@
     <Folder Include="Scripts\3-Packages" />
     <Folder Include="Scripts\4-Triggers" />
     <Folder Include="Scripts\5-InitData" />
+    <Folder Include="Scripts\6-ResetData" />
   </ItemGroup>
 </Project>
