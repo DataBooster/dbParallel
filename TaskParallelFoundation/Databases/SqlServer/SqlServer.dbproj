@@ -388,10 +388,8 @@
     <NotInBuild Include="Scripts\Post-Deployment\6-TPW_WF_STATE_MACHINE.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <DeploymentExtensionConfiguration Include="SqlServer.refactorlog">
-      <SubType>DeploymentExtensionConfiguration</SubType>
-    </DeploymentExtensionConfiguration>
+    <NotInBuild Include="Scripts\Pre-Deployment\0-TPW_RESET_DATA.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
   </ItemGroup>
 </Project>
