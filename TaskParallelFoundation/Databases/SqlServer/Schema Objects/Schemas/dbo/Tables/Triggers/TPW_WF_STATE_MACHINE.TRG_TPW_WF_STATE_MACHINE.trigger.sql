@@ -146,3 +146,24 @@ AS
 		INSERT	INTO TPW_WF_STATE_MACHINE (STATE_ID_OLD, EVENT_ID, STATE_ID_NEW, ACTIVITY, STATE_NAME_OLD, EVENT_NAME, STATE_NAME_NEW, DESCRIPTION_)
 		SELECT	STATE_ID_OLD, EVENT_ID, STATE_ID_NEW, ACTIVITY, STATE_NAME_OLD, EVENT_NAME, STATE_NAME_NEW, DESCRIPTION_
 		FROM	@tTableVar;
+
+----------------------------------------------------------------------------------------------------
+--
+--	Copyright 2012 Abel Cheng
+--	This source code is subject to terms and conditions of the Apache License, Version 2.0.
+--	See http://www.apache.org/licenses/LICENSE-2.0.
+--	All other rights reserved.
+--	You must not remove this notice, or any other, from this software.
+--
+--	Original Author:	Abel Cheng <abelcys@gmail.com>
+--	Created Date:		2012-03-23
+--	Primary Host:		http://dbParallel.codeplex.com
+--	Change Log:
+--	Author				Date			Comment
+--
+--
+--
+--
+--	(Keep clean code rather than complicated code plus long comments.)
+--
+----------------------------------------------------------------------------------------------------
