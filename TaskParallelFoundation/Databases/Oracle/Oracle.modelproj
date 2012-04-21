@@ -78,7 +78,7 @@
     <Content Include="Scripts\3-Packages\01-TPW_SERVICE.pck">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Scripts\3-Packages\02-TPW_SCHEDULER.pck">
+    <Content Include="Scripts\3-Packages\02-TPW_CALL.pck">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Scripts\3-Packages\03-TPW_TEST.pck">

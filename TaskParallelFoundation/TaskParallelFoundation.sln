@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{69FE950A-9AFA-4482-A161-529BA553A135}"
 	ProjectSection(SolutionItems) = preProject
+		License.txt = License.txt
+		Notice.txt = Notice.txt
 		Documents\StateTransitionDiagram.doc = Documents\StateTransitionDiagram.doc
 	EndProjectSection
 EndProject

@@ -1,7 +1,7 @@
 CREATE OR REPLACE PACKAGE XYZ.TPW_TEST IS
 
   -- AUTHOR  : Abel Cheng
-  -- CREATED : 2012-04-16 9:53:17 AM
+  -- CREATED : 2012-04-16 9:53:17 PM
   -- PURPOSE : Test
 
 
@@ -18,27 +18,27 @@ AS
 	tPJob_ID	PLS_INTEGER;
 	tSQL		VARCHAR2(256);
 BEGIN
-	tPJob_ID	:= XYZ.TPW_SCHEDULER.CREATE_PJOB('Test1', 'Tester1', 'This is test1.');
+	tPJob_ID	:= XYZ.TPW_CALL.CREATE_PJOB('App1', 'User1', 'This is test1.');
 
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 10);
-	XYZ.TPW_SCHEDULER.ADD_TASK(tPJob_ID, tSQL, 1, 'Sleep for a while.');
+	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 1, 'Task1 sleep for 10 seconds.');
 	
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 70);
-	XYZ.TPW_SCHEDULER.ADD_TASK(tPJob_ID, tSQL, 1, 'Sleep for a while.');
+	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 1, 'Task2 sleep for 70 seconds.');
 
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 30);
-	XYZ.TPW_SCHEDULER.ADD_TASK(tPJob_ID, tSQL, 1, 'Sleep for a while.');
+	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 1, 'Task3 sleep for 30 seconds.');
 
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 70);
-	XYZ.TPW_SCHEDULER.ADD_TASK(tPJob_ID, tSQL, 2, 'Sleep for a while.');
+	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 2, 'Task4 sleep for 70 seconds.');
 
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 15);
-	XYZ.TPW_SCHEDULER.ADD_CALLBACK_FOR_SUCCESS(tPJob_ID, tSQL, 3, 'Sleep for a while if success.');
+	XYZ.TPW_CALL.ADD_CALLBACK_FOR_SUCCESS(tPJob_ID, tSQL, 3, 'Sleep for 15s if all success.');
 
-	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 15);
-	XYZ.TPW_SCHEDULER.ADD_CALLBACK_FOR_FAIL(tPJob_ID, tSQL, 3, 'Sleep for a while if fail.');
+	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 25);
+	XYZ.TPW_CALL.ADD_CALLBACK_FOR_FAIL(tPJob_ID, tSQL, 3, 'Sleep for 25s if fail.');
 
-	XYZ.TPW_SCHEDULER.START_PJOB(tPJob_ID);
+	XYZ.TPW_CALL.START_PJOB(tPJob_ID);
 
 	DBMS_OUTPUT.PUT_LINE('New PJob_ID#' || tPJob_ID);
 END TEST_1;

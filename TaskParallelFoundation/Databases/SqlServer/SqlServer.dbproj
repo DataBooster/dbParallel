@@ -338,25 +338,25 @@
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\TPW_SERVICE_LOG_SYS_ERROR.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_SCHEDULER_CREATE_PJOB.proc.sql">
+    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_CALL_CREATE_PJOB.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_SCHEDULER_ADD_TASK.proc.sql">
+    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_CALL_ADD_TASK.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_SCHEDULER_ADD_CALLBACK_FOR_SUCCESS.proc.sql">
+    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_CALL_ADD_CALLBACK_FOR_SUCCESS.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_SCHEDULER_ADD_CALLBACK_FOR_FAIL.proc.sql">
+    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_CALL_ADD_CALLBACK_FOR_FAIL.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_SCHEDULER_START_PJOB.proc.sql">
+    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_CALL_START_PJOB.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_SCHEDULER_TRY_CANCEL_PJOB.proc.sql">
+    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_CALL_TRY_CANCEL_PJOB.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_SCHEDULER_TEST_SQL.proc.sql">
+    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_CALL_TEST_SQL.proc.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Database Level Objects\Security\Schemas\test.schema.sql">
@@ -365,7 +365,7 @@
     <Build Include="Schema Objects\Schemas\test\Programmability\Stored Procedures\TPW_TEST_1.proc.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_SCHEDULER_START_NEW_SINGLE_TASK.proc.sql">
+    <Build Include="Schema Objects\Schemas\client\Programmability\Stored Procedures\TPW_CALL_START_NEW_SINGLE_TASK.proc.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>
