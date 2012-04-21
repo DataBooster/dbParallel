@@ -1,11 +1,17 @@
-﻿CREATE PROCEDURE client.TPW_SCHEDULER_TEST_SQL
+﻿CREATE PROCEDURE client.TPW_CALL_ADD_CALLBACK_FOR_FAIL
 (
-	@inDynamic_SQL_STMT		NVARCHAR(MAX)
+	@inPJob_ID			INT,
+	@inDynamic_SQL_STMT	NVARCHAR(MAX),
+	@inCommand_Timeout	TINYINT			= 10,
+	@inDescription		NVARCHAR(256)	= N''
 )
 AS
 	SET NOCOUNT ON;
+	DECLARE	@tReturn	INT;
 
-	EXECUTE(@inDynamic_SQL_STMT);
+	EXEC @tReturn = dbo.TPW_SERVICE_ADD_TASK @inPJob_ID, -1, @inDynamic_SQL_STMT, @inCommand_Timeout, @inDescription;
+
+	RETURN @tReturn;
 
 ----------------------------------------------------------------------------------------------------
 --
