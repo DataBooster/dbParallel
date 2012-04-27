@@ -3,7 +3,7 @@
 	@inPJob_ID			INT,
 	@inTask_ID			SMALLINT,
 	@inDynamic_SQL_STMT	NVARCHAR(MAX),
-	@inCommand_Timeout	TINYINT,
+	@inCommand_Timeout	SMALLINT,
 	@inDescription_		NVARCHAR(256)
 )
 AS

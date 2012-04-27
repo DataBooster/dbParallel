@@ -428,7 +428,7 @@ PROCEDURE ADD_TASK
 	inCommand_Timeout	PLS_INTEGER,
 	inDescription_		VARCHAR2
 )	AS
-	tCommand_Timeout	PLS_INTEGER	:= LEAST(GREATEST(inCommand_Timeout, 1), 255);
+	tCommand_Timeout	PLS_INTEGER	:= LEAST(GREATEST(inCommand_Timeout, 1), 32767);
 BEGIN
 	ON_PJOB_EVENT(inPJob_ID, 'ADD_TASK', (inTask_ID > 0));
 

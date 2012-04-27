@@ -33,7 +33,7 @@ PROCEDURE ADD_TASK
 (
 	inPJob_ID			PLS_INTEGER,
 	inDynamic_SQL_STMT	CLOB,
-	inCommand_Timeout	PLS_INTEGER	:= 10,
+	inCommand_Timeout	PLS_INTEGER	:= 600,
 	inDescription		VARCHAR2	:= ''
 );
 
@@ -41,7 +41,7 @@ PROCEDURE ADD_CALLBACK_FOR_SUCCESS
 (
 	inPJob_ID			PLS_INTEGER,
 	inDynamic_SQL_STMT	CLOB,
-	inCommand_Timeout	PLS_INTEGER	:= 10,
+	inCommand_Timeout	PLS_INTEGER	:= 600,
 	inDescription		VARCHAR2	:= ''
 );
 
@@ -49,7 +49,7 @@ PROCEDURE ADD_CALLBACK_FOR_FAIL
 (
 	inPJob_ID			PLS_INTEGER,
 	inDynamic_SQL_STMT	CLOB,
-	inCommand_Timeout	PLS_INTEGER	:= 10,
+	inCommand_Timeout	PLS_INTEGER	:= 600,
 	inDescription		VARCHAR2	:= ''
 );
 
@@ -71,7 +71,7 @@ PROCEDURE TRY_CANCEL_PJOB
 PROCEDURE START_NEW_SINGLE_TASK
 (
 	inDynamic_SQL		CLOB,
-	inCommand_Timeout	PLS_INTEGER	:= 10,
+	inCommand_Timeout	PLS_INTEGER	:= 600,
 	inSuccess_Callback	CLOB		:= NULL,
 	inFail_Callback		CLOB		:= NULL,
 	inUser_App			VARCHAR2	:= '',
@@ -129,7 +129,7 @@ PROCEDURE ADD_TASK
 (
 	inPJob_ID			PLS_INTEGER,
 	inDynamic_SQL_STMT	CLOB,
-	inCommand_Timeout	PLS_INTEGER	:= 10,
+	inCommand_Timeout	PLS_INTEGER	:= 600,
 	inDescription		VARCHAR2	:= ''
 )
 AS
@@ -142,7 +142,7 @@ PROCEDURE ADD_CALLBACK_FOR_SUCCESS
 (
 	inPJob_ID			PLS_INTEGER,
 	inDynamic_SQL_STMT	CLOB,
-	inCommand_Timeout	PLS_INTEGER	:= 10,
+	inCommand_Timeout	PLS_INTEGER	:= 600,
 	inDescription		VARCHAR2	:= ''
 )	AS
 BEGIN
@@ -153,7 +153,7 @@ PROCEDURE ADD_CALLBACK_FOR_FAIL
 (
 	inPJob_ID			PLS_INTEGER,
 	inDynamic_SQL_STMT	CLOB,
-	inCommand_Timeout	PLS_INTEGER	:= 10,
+	inCommand_Timeout	PLS_INTEGER	:= 600,
 	inDescription		VARCHAR2	:= ''
 )	AS
 BEGIN
@@ -199,7 +199,7 @@ END TRY_CANCEL_PJOB;
 PROCEDURE START_NEW_SINGLE_TASK
 (
 	inDynamic_SQL		CLOB,
-	inCommand_Timeout	PLS_INTEGER	:= 10,
+	inCommand_Timeout	PLS_INTEGER	:= 600,
 	inSuccess_Callback	CLOB		:= NULL,
 	inFail_Callback		CLOB		:= NULL,
 	inUser_App			VARCHAR2	:= '',

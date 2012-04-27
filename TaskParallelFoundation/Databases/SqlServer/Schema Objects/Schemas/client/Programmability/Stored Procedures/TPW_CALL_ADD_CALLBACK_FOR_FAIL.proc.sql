@@ -2,7 +2,7 @@
 (
 	@inPJob_ID			INT,
 	@inDynamic_SQL_STMT	NVARCHAR(MAX),
-	@inCommand_Timeout	TINYINT			= 10,
+	@inCommand_Timeout	SMALLINT		= 600,
 	@inDescription		NVARCHAR(256)	= N''
 )
 AS
