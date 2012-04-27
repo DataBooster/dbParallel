@@ -3,7 +3,7 @@ CREATE TABLE XYZ.TPW_TASK
 (
 	PJOB_ID				NUMBER(10)						NOT NULL,
 	TASK_ID				NUMBER(5)						NOT NULL,
-	COMMAND_TIMEOUT		NUMBER(3)	DEFAULT 10			NOT NULL,		-- Minutes
+	COMMAND_TIMEOUT		NUMBER(5)	DEFAULT 600			NOT NULL,		-- Seconds
 	DYNAMIC_SQL_STMT	CLOB							NOT NULL,
 	DESCRIPTION_		VARCHAR2(256),
 	START_TIME			TIMESTAMP(3),
@@ -16,7 +16,7 @@ CREATE TABLE XYZ.TPW_TASK
 STORAGE (INITIAL 64K NEXT 64K);
 
 COMMENT ON COLUMN XYZ.TPW_TASK.TASK_ID IS '0: reserved for Callback after Success; -1: reserved for Callback after Fail;';
-COMMENT ON COLUMN XYZ.TPW_TASK.COMMAND_TIMEOUT IS 'Minutes. (Default 10 minutes)';
+COMMENT ON COLUMN XYZ.TPW_TASK.COMMAND_TIMEOUT IS 'Seconds. (Default 600 seconds = 10 minutes)';
 
 ----------------------------------------------------------------------------------------------------
 --

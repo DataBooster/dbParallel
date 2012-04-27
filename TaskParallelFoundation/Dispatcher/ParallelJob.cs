@@ -34,7 +34,7 @@ namespace TaskParallelWorkflow.Dispatcher
 					ParallelTask parallelTask = new ParallelTask(
 						task.Field<int>("PJOB_ID"),
 						task.Field<short>("TASK_ID"),
-						(task.Field<byte>("COMMAND_TIMEOUT") * 60)
+						task.Field<short>("COMMAND_TIMEOUT")
 					);
 
 					switch (parallelTask.TaskID)
