@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 	ProjectSection(SolutionItems) = preProject
 		License.txt = License.txt
 		Notice.txt = Notice.txt
+		Documents\Setup for Oracle.txt = Documents\Setup for Oracle.txt
+		Documents\Setup for SQL Server.txt = Documents\Setup for SQL Server.txt
 		Documents\StateTransitionDiagram.doc = Documents\StateTransitionDiagram.doc
 	EndProjectSection
 EndProject
