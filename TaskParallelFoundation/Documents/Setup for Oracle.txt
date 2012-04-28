@@ -1,0 +1,25 @@
+1)	Database scripts
+	Replace "XYZ" to real schema name of your database environment in all scrpts;
+	Run every script by the order of folder/file name;
+	Grant privileges for schema/packages base on your database security planning;
+
+2)	Windows Service
+	Green Install: Copy following 4 files into the destination path,
+
+		TaskParallelWorkflow.PumpService.exe
+		TaskParallelWorkflow.PumpService.exe.config
+		TaskParallelWorkflow.Dispatcher.dll
+		TaskParallelWorkflow.DataAccess.dll
+
+		Change TaskParallelWorkflow.PumpService.exe.config:
+			TPW_Database (under connectionStrings) to be custom database connection string;
+			TPW_Package (under appSettings) to be the package path with actual schema, it must be end with "." for compatibility with other database;
+
+		Install TaskParallelWorkflow.PumpService.exe as a Windows service by the Installutil.exe tool,
+
+		Installutil TaskParallelWorkflow.PumpService.exe
+
+		Start the service.
+
+	If you like to compile the source code instead of download binary files,
+	please make sure the conditional compilation symbols of DataAccess project has defined ORACLE.
