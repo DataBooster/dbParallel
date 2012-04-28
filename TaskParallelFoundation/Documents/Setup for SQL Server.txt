@@ -22,5 +22,5 @@
 
 		Start the service.
 
-	If you like to compile the source code instead of download binary files,
+	If you like to compile the source code instead of download binary distribution,
 	please make sure the conditional compilation symbols of DataAccess project has defined SQL_SERVER.
