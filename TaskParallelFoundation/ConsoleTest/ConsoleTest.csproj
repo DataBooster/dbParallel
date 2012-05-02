@@ -8,8 +8,8 @@
     <ProjectGuid>{FDA31E8E-B7BA-47D3-BAA0-48A0FCEE84F2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TaskParallelWorkflow.ConsoleTest</RootNamespace>
-    <AssemblyName>TaskParallelWorkflow.ConsoleTest</AssemblyName>
+    <RootNamespace>DbParallel.ConsoleTest</RootNamespace>
+    <AssemblyName>DbParallel.ConsoleTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TaskParallelWorkflow.Dispatcher.Models
+namespace DbParallel.Dispatcher.Models
 {
 	internal struct DbAppSettings
 	{

@@ -7,18 +7,18 @@
 2)	Windows Service
 	Green Install: Copy following 4 files into the destination path,
 
-		TaskParallelWorkflow.PumpService.exe
-		TaskParallelWorkflow.PumpService.exe.config
-		TaskParallelWorkflow.Dispatcher.dll
-		TaskParallelWorkflow.DataAccess.dll
+		DbParallel.PumpService.exe
+		DbParallel.PumpService.exe.config
+		DbParallel.Dispatcher.dll
+		DbParallel.DataAccess.dll
 
-		Change TaskParallelWorkflow.PumpService.exe.config:
+		Change DbParallel.PumpService.exe.config:
 			TPW_Database (under connectionStrings) to be custom database connection string;
 			TPW_Package (under appSettings) to be the prefix of actual path where those TPW_SERVICE_ stored proccedures located;
 
-		Install TaskParallelWorkflow.PumpService.exe as a Windows service by the Installutil.exe tool,
+		Install DbParallel.PumpService.exe as a Windows service by the Installutil.exe tool,
 
-		Installutil TaskParallelWorkflow.PumpService.exe
+		Installutil DbParallel.PumpService.exe
 
 		Start the service.
 

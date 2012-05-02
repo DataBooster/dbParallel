@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TaskParallelWorkflow.Dispatcher
+namespace DbParallel.Dispatcher
 {
 	internal class PumpSynchronizer : IDisposable
 	{

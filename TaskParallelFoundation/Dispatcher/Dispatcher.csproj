@@ -8,8 +8,8 @@
     <ProjectGuid>{8FE49098-9C54-43F7-876A-1486573FADF2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TaskParallelWorkflow.Dispatcher</RootNamespace>
-    <AssemblyName>TaskParallelWorkflow.Dispatcher</AssemblyName>
+    <RootNamespace>DbParallel.Dispatcher</RootNamespace>
+    <AssemblyName>DbParallel.Dispatcher</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>

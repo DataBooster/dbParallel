@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
-using TaskParallelWorkflow.Dispatcher;
+using DbParallel.Dispatcher;
 
-namespace TaskParallelWorkflow.ConsoleTest
+namespace DbParallel.ConsoleTest
 {
 	class Program
 	{

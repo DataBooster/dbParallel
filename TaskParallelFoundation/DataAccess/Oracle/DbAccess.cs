@@ -2,7 +2,7 @@
 using System;
 using DDTek.Oracle;
 
-namespace TaskParallelWorkflow.DataAccess
+namespace DbParallel.DataAccess
 {
 	public partial class DbAccess
 	{

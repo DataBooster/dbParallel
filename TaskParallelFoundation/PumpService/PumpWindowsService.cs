@@ -1,7 +1,7 @@
 ﻿using System.ServiceProcess;
-using TaskParallelWorkflow.Dispatcher;
+using DbParallel.Dispatcher;
 
-namespace TaskParallelWorkflow.PumpService
+namespace DbParallel.PumpService
 {
 	public partial class PumpWindowsService : ServiceBase
 	{

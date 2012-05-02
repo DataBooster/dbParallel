@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Common;
 
-namespace TaskParallelWorkflow.DataAccess
+namespace DbParallel.DataAccess
 {
 	public partial class DbParameterBuilder
 	{

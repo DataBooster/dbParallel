@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using TaskParallelWorkflow.DataAccess;
+using DbParallel.DataAccess;
 
-namespace TaskParallelWorkflow.Dispatcher
+namespace DbParallel.Dispatcher
 {
 	using Models;
 	using Configs;

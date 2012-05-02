@@ -1,4 +1,4 @@
-﻿namespace TaskParallelWorkflow.PumpService
+﻿namespace DbParallel.PumpService
 {
 	partial class PumpWindowsService
 	{
@@ -32,7 +32,7 @@
 			// PumpWindowsService
 			// 
 			this.CanShutdown = true;
-			this.ServiceName = "TaskParallelWorkflow.PumpService";
+			this.ServiceName = "dbParallel.PumpService";
 
 		}
 
