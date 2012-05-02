@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.Common;
 
-namespace TaskParallelWorkflow.DataAccess
+namespace DbParallel.DataAccess
 {
 	public partial class DbAccess : IDisposable
 	{
@@ -44,16 +44,13 @@ namespace TaskParallelWorkflow.DataAccess
 			return canRetry;
 		}
 
-		public void ExecuteReader(string commandText, int commandTimeout, CommandType commandType, Action<DbParameterBuilder> parametersBuilder, Action<DbDataReader> dataReader)
+		private DbDataReader CreateReader(string commandText, int commandTimeout, CommandType commandType, Action<DbParameterBuilder> parametersBuilder)
 		{
-			DbDataReader reader = null;
-
 			for (int retry = 0; ; retry++)
 			{
 				try
 				{
-					reader = CreateCommand(commandText, commandTimeout, commandType, parametersBuilder).ExecuteReader();
-					break;
+					return CreateCommand(commandText, commandTimeout, commandType, parametersBuilder).ExecuteReader();
 				}
 				catch (Exception e)
 				{
@@ -63,19 +60,15 @@ namespace TaskParallelWorkflow.DataAccess
 						throw;
 				}
 			}
+		}
 
-			if (reader != null)
+		public void ExecuteReader(string commandText, int commandTimeout, CommandType commandType, Action<DbParameterBuilder> parametersBuilder, Action<DbDataReader> dataReader)
+		{
+			using (DbDataReader reader = CreateReader(commandText, commandTimeout, commandType, parametersBuilder))
 			{
-				try
-				{
-					if (dataReader != null)
-						while (reader.Read())
-							dataReader(reader);
-				}
-				finally
-				{
-					reader.Close();
-				}
+				if (dataReader != null)
+					while (reader.Read())
+						dataReader(reader);
 			}
 		}
 

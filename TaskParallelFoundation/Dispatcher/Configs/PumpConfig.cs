@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using System.Data.Common;
 using System.Configuration;
-using TaskParallelWorkflow.Dispatcher.Models;
+using DbParallel.Dispatcher.Models;
 
-namespace TaskParallelWorkflow.Dispatcher.Configs
+namespace DbParallel.Dispatcher.Configs
 {
 	internal static class PumpConfig
 	{

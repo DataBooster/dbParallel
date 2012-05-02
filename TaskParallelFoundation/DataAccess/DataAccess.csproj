@@ -8,8 +8,8 @@
     <ProjectGuid>{0BD1299C-6AE3-407C-844D-F69B90037846}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TaskParallelWorkflow.DataAccess</RootNamespace>
-    <AssemblyName>TaskParallelWorkflow.DataAccess</AssemblyName>
+    <RootNamespace>DbParallel.DataAccess</RootNamespace>
+    <AssemblyName>DbParallel.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>

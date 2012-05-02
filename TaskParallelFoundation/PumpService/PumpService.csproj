@@ -8,8 +8,8 @@
     <ProjectGuid>{94B30A6D-4E3E-439A-865C-16425F407D5E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TaskParallelWorkflow.PumpService</RootNamespace>
-    <AssemblyName>TaskParallelWorkflow.PumpService</AssemblyName>
+    <RootNamespace>DbParallel.PumpService</RootNamespace>
+    <AssemblyName>DbParallel.PumpService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -35,7 +35,8 @@
     <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>TaskParallelWorkflow.PumpService.PumpWindowsService</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -120,9 +121,11 @@
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PumpWindowsService.resx">
       <DependentUpon>PumpWindowsService.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

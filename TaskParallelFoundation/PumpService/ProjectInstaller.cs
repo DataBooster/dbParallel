@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace TaskParallelWorkflow.PumpService
+namespace DbParallel.PumpService
 {
 	[RunInstaller(true)]
 	public partial class ProjectInstaller : System.Configuration.Install.Installer

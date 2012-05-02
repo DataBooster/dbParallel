@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.Common;
 
-namespace TaskParallelWorkflow.DataAccess
+namespace DbParallel.DataAccess
 {
 	public static partial class DbExtensions
 	{

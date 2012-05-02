@@ -1,4 +1,4 @@
-﻿namespace TaskParallelWorkflow.PumpService
+﻿namespace DbParallel.PumpService
 {
 	partial class ProjectInstaller
 	{
@@ -39,8 +39,8 @@
 			// pumpServiceInstaller
 			// 
 			this.pumpServiceInstaller.Description = "Database Task Parallel Foundation for Oracle";
-			this.pumpServiceInstaller.DisplayName = "Task Parallel Foundation Pump Service";
-			this.pumpServiceInstaller.ServiceName = "TaskParallelWorkflow.PumpService";
+			this.pumpServiceInstaller.DisplayName = "dbParallel Pump Service";
+			this.pumpServiceInstaller.ServiceName = "dbParallel.PumpService";
 			this.pumpServiceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
 			// 
 			// ProjectInstaller

@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="TaskParallelWorkflow.Dispatcher.PumpMain">
+  <Class Name="DbParallel.Dispatcher.PumpMain">
     <Position X="0.5" Y="0.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
     <NestedTypes>
-      <Enum Name="TaskParallelWorkflow.Dispatcher.PumpMain.ServiceMode">
+      <Enum Name="DbParallel.Dispatcher.PumpMain.ServiceMode">
         <TypeIdentifier>
           <NewMemberFileName>PumpMain.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -17,7 +17,7 @@
       <FileName>PumpMain.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TaskParallelWorkflow.Dispatcher.ParallelJob">
+  <Class Name="DbParallel.Dispatcher.ParallelJob">
     <Position X="2.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAACAAAAAAAAEAAgAAQCAAAAAAAAAAEAAAAAI=</HashCode>
@@ -25,28 +25,28 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="TaskParallelWorkflow.Dispatcher.ParallelTask">
+  <Class Name="DbParallel.Dispatcher.ParallelTask">
     <Position X="4.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AEAAIAAAAAAAgAQAAAAAAAAAAAgAAAAAAAAgEAAAAAA=</HashCode>
       <FileName>ParallelTask.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TaskParallelWorkflow.Dispatcher.Configs.PumpConfig">
+  <Class Name="DbParallel.Dispatcher.Configs.PumpConfig">
     <Position X="6.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAAAYAAABAAAEAIAwBQEAACAQAAAAAAA=</HashCode>
       <FileName>Configs\PumpConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TaskParallelWorkflow.Dispatcher.Models.DbPackage">
+  <Class Name="DbParallel.Dispatcher.Models.DbPackage">
     <Position X="8.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAQAAEAAAAAECAIAgIAAAAAAAAAAAABAEAQAAAAA=</HashCode>
       <FileName>Models\DbPackage.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TaskParallelWorkflow.Dispatcher.PumpSynchronizer">
+  <Class Name="DbParallel.Dispatcher.PumpSynchronizer">
     <Position X="2.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAACABAAAACAAACAEAAAIAACAQAAAAAAAAEAA=</HashCode>
@@ -54,7 +54,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Struct Name="TaskParallelWorkflow.Dispatcher.Models.DbAppSettings">
+  <Struct Name="DbParallel.Dispatcher.Models.DbAppSettings">
     <Position X="6.5" Y="4.25" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAIAAAAAAAEAAAAAAgAAAAAAAAAAAA=</HashCode>

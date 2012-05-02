@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data;
 using System.Data.Common;
-using TaskParallelWorkflow.DataAccess;
-using TaskParallelWorkflow.Dispatcher.Configs;
+using DbParallel.DataAccess;
+using DbParallel.Dispatcher.Configs;
 
-namespace TaskParallelWorkflow.Dispatcher.Models
+namespace DbParallel.Dispatcher.Models
 {
 	internal static class DbPackage
 	{

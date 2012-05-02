@@ -1,7 +1,7 @@
 ﻿#if ORACLE
 using DDTek.Oracle;
 
-namespace TaskParallelWorkflow.DataAccess
+namespace DbParallel.DataAccess
 {
 	public static partial class DbExtensions
 	{
