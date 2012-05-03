@@ -6,7 +6,7 @@ namespace DbParallel.DataAccess
 {
 	public static partial class DbExtensions
 	{
-		private static bool IsNullable(this Type type)
+		internal static bool IsNullable(this Type type)
 		{
 			return (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>));
 		}
