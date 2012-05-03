@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="DbAccess.cs" />
     <Compile Include="DbExtensions.cs" />
+    <Compile Include="DbFieldMap.cs" />
     <Compile Include="DbParameterBuilder.cs" />
     <Compile Include="Oracle\DbAccess.cs" />
     <Compile Include="Oracle\DbExtensions.partial.cs" />

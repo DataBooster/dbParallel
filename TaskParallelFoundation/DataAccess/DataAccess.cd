@@ -3,24 +3,38 @@
   <Class Name="DbParallel.DataAccess.DbExtensions">
     <Position X="5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAgAAAgAIAAAAAAASAAAAAACAQAAAoAA=</HashCode>
+      <HashCode>AAAACAAAAAAAAgAAAgAIAAAAAQASAAAAAACEQgAAoAA=</HashCode>
       <FileName>DbExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DbParallel.DataAccess.DbParameterBuilder">
     <Position X="3" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAEAIAAAAAAAAAA=</HashCode>
       <FileName>DbParameterBuilder.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DbParallel.DataAccess.DbAccess">
     <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAACAAACAAABAEAEAAAAQAQAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BQAAAAAAACAAACAAABAEAEAAAAQAQAAAAAAAAAAAAAA=</HashCode>
       <FileName>DbAccess.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DbParallel.DataAccess.DbFieldMap">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="DbParallel.DataAccess.DbFieldMap.PropertyOrField" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>DbFieldMap.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAgAAAAAAAEAAAAACAAIAA=</HashCode>
+      <FileName>DbFieldMap.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Tahoma" Size="8.25" />
 </ClassDiagram>
