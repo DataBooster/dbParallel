@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace DbParallel.DataAccess
 {
-	public class DbFieldMap
+	public class DbFieldMap<T> where T : new()
 	{
 		class PropertyOrField
 		{
@@ -30,17 +30,17 @@ namespace DbParallel.DataAccess
 					_PropertyInfo = value as PropertyInfo;
 
 					if (_PropertyInfo != null)
-						_ValueType = _PropertyInfo.PropertyType;
+						_ValueType = _PropertyInfo.PropertyType.TryUnderlyingType();
 					else
 					{
 						_FieldInfo = value as FieldInfo;
 
 						if (_FieldInfo != null)
-							_ValueType = _FieldInfo.FieldType;
+							_ValueType = _FieldInfo.FieldType.TryUnderlyingType();
 					}
 
-					if (_ValueType.IsNullable())
-						_ValueType = Nullable.GetUnderlyingType(_ValueType);
+					if (_ValueType.CanMapToDbType() == false)
+						throw new ApplicationException("The (Underlying)Type of Property Or Field must be a Value Type.");
 				}
 			}
 
@@ -84,7 +84,7 @@ namespace DbParallel.DataAccess
 			}
 		}
 
-		public DbFieldMap Add<T>(string columnName, Expression<Func<T, object>> fieldExpr)
+		public DbFieldMap<T> Add(string columnName, Expression<Func<T, object>> fieldExpr)
 		{
 			MemberExpression memberExpression = fieldExpr.Body as MemberExpression;
 
@@ -104,11 +104,28 @@ namespace DbParallel.DataAccess
 			return this;
 		}
 
-		internal T Read<T>(DbDataReader dataReader) where T : new()
+		internal void AddAllPropertiesOrFields()
+		{
+			Type type = typeof(T);
+
+			foreach (PropertyInfo p in type.GetProperties())
+			{
+				if (p.CanWrite && p.CanRead && p.PropertyType.TryUnderlyingType().CanMapToDbType())
+					_FieldList.Add(new PropertyOrField() { ColumnName = p.Name, MemberInfo = p });
+			}
+
+			foreach (FieldInfo f in type.GetFields())
+			{
+				if (f.IsInitOnly == false && f.FieldType.TryUnderlyingType().CanMapToDbType())
+					_FieldList.Add(new PropertyOrField() { ColumnName = f.Name, MemberInfo = f });
+			}
+		}
+
+		internal T ReadNew(DbDataReader dataReader)
 		{
 			T entity = new T();
 
-			if (_RowCount == 0)
+			if (_RowCount == 0L)
 				MapColumns(dataReader);
 
 			foreach (PropertyOrField field in _FieldList)
@@ -119,3 +136,24 @@ namespace DbParallel.DataAccess
 		}
 	}
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//	Copyright 2012 Abel Cheng
+//	This source code is subject to terms and conditions of the Apache License, Version 2.0.
+//	See http://www.apache.org/licenses/LICENSE-2.0.
+//	All other rights reserved.
+//	You must not remove this notice, or any other, from this software.
+//
+//	Original Author:	Abel Cheng <abelcys@gmail.com>
+//	Created Date:		2012-05-03
+//	Primary Host:		http://dbParallel.codeplex.com
+//	Change Log:
+//	Author				Date			Comment
+//
+//
+//
+//
+//	(Keep clean code rather than complicated code plus long comments.)
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////

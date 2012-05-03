@@ -5,7 +5,7 @@ namespace DbParallel.DataAccess
 {
 	public partial class DbParameterBuilder
 	{
-		public OracleParameter AddAssociativeArray(string parameterName, OracleDbType oraType)
+		public OracleParameter AddOracleAssociativeArray(string parameterName, OracleDbType oraType)
 		{
 			OracleCommand oraCommand = _DbCommand as OracleCommand;
 			OracleParameter parameter = oraCommand.CreateParameter();

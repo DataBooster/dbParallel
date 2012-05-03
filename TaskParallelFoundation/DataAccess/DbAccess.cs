@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.Common;
+using System.Configuration;
 
 namespace DbParallel.DataAccess
 {
@@ -21,6 +22,20 @@ namespace DbParallel.DataAccess
 		{
 		}
 
+		public DbAccess(ConnectionStringSettings connSetting)
+			: this(DbProviderFactories.GetFactory(connSetting.ProviderName), connSetting.ConnectionString)
+		{
+		}
+
+		public DbAccess(string connectionStringKey)
+		{
+			ConnectionStringSettings connSetting = ConfigurationManager.ConnectionStrings[connectionStringKey];
+
+			_Connection = DbProviderFactories.GetFactory(connSetting.ProviderName).CreateConnection();
+			_Connection.ConnectionString = connSetting.ConnectionString;
+			_Connection.Open();
+		}
+
 		private DbCommand CreateCommand(string commandText, int commandTimeout, CommandType commandType, Action<DbParameterBuilder> parametersBuilder)
 		{
 			DbCommand dbCommand = _Connection.CreateCommand();
@@ -36,11 +51,11 @@ namespace DbParallel.DataAccess
 			return dbCommand;
 		}
 
-		partial void OnConnectionLoss(Exception dbException, ref bool canRetry);
+		partial void OnOracleConnectionLoss(Exception dbException, ref bool canRetry);
 		private bool OnConnectionLoss(Exception dbException)
 		{
 			bool canRetry = false;
-			OnConnectionLoss(dbException, ref canRetry);
+			OnOracleConnectionLoss(dbException, ref canRetry);
 			return canRetry;
 		}
 
@@ -75,6 +90,37 @@ namespace DbParallel.DataAccess
 		public void ExecuteReader(string commandText, Action<DbParameterBuilder> parametersBuilder, Action<DbDataReader> dataReader)
 		{
 			ExecuteReader(commandText, 0, CommandType.StoredProcedure, parametersBuilder, dataReader);
+		}
+
+		public void ExecuteReader<T>(string commandText, int commandTimeout, CommandType commandType, Action<DbParameterBuilder> parametersBuilder,
+			Action<DbFieldMap<T>> resultMap, Action<T> readEntity) where T : new()
+		{
+			using (DbDataReader reader = CreateReader(commandText, commandTimeout, commandType, parametersBuilder))
+			{
+				if (readEntity != null)
+				{
+					DbFieldMap<T> map = new DbFieldMap<T>();
+
+					if (resultMap == null)
+						map.AddAllPropertiesOrFields();
+					else
+						resultMap(map);
+
+					while (reader.Read())
+						readEntity(map.ReadNew(reader));
+				}
+			}
+		}
+
+		public void ExecuteReader<T>(string commandText, Action<DbParameterBuilder> parametersBuilder,
+			Action<DbFieldMap<T>> resultMap, Action<T> readEntity) where T : new()
+		{
+			ExecuteReader<T>(commandText, 0, CommandType.StoredProcedure, parametersBuilder, resultMap, readEntity);
+		}
+
+		public void ExecuteReader<T>(string commandText, Action<DbParameterBuilder> parametersBuilder, Action<T> readEntity) where T : new()
+		{
+			ExecuteReader<T>(commandText, 0, CommandType.StoredProcedure, parametersBuilder, null, readEntity);
 		}
 
 		public int ExecuteNonQuery(string commandText, int commandTimeout, CommandType commandType, Action<DbParameterBuilder> parametersBuilder)
