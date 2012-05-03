@@ -6,7 +6,7 @@ namespace DbParallel.DataAccess
 {
 	public partial class DbAccess
 	{
-		partial void OnConnectionLoss(Exception dbException, ref bool canRetry)
+		partial void OnOracleConnectionLoss(Exception dbException, ref bool canRetry)
 		{
 			if (_Connection is OracleConnection)
 			{

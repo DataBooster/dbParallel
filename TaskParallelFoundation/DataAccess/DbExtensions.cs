@@ -11,6 +11,20 @@ namespace DbParallel.DataAccess
 			return (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>));
 		}
 
+		internal static Type TryUnderlyingType(this Type type)
+		{
+			return type.IsNullable() ? Nullable.GetUnderlyingType(type) : type;
+		}
+
+		internal static bool CanMapToDbType(this Type type)
+		{
+			if (type.IsValueType)
+				return true;
+			if (type == typeof(string))
+				return true;
+			return false;
+		}
+
 		private static T TryConvert<T>(object dbValue)
 		{
 			if (dbValue == null || Convert.IsDBNull(dbValue))
@@ -23,9 +37,7 @@ namespace DbParallel.DataAccess
 				}
 				catch (InvalidCastException)
 				{
-					Type t = typeof(T);
-
-					return (T)Convert.ChangeType(dbValue, t.IsNullable() ? Nullable.GetUnderlyingType(t) : t);
+					return (T)Convert.ChangeType(dbValue, typeof(T).TryUnderlyingType());
 				}
 			}
 		}

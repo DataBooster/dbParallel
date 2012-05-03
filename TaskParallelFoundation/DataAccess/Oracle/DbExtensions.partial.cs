@@ -11,13 +11,13 @@ namespace DbParallel.DataAccess
 			return oracleParameter;
 		}
 
-		public static OracleParameter SetScale(this OracleParameter oracleParameter, byte nScale)
+		public static OracleParameter SetOracleScale(this OracleParameter oracleParameter, byte nScale)
 		{
 			oracleParameter.Scale = nScale;
 			return oracleParameter;
 		}
 
-		public static OracleParameter SetPrecision(this OracleParameter oracleParameter, byte nPrecision)
+		public static OracleParameter SetOraclePrecision(this OracleParameter oracleParameter, byte nPrecision)
 		{
 			oracleParameter.Precision = nPrecision;
 			return oracleParameter;
