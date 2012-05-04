@@ -92,6 +92,30 @@ namespace DbParallel.DataAccess
 			ExecuteReader(commandText, 0, CommandType.StoredProcedure, parametersBuilder, dataReader);
 		}
 
+		public void ExecuteReader(string commandText, int commandTimeout, CommandType commandType, Action<DbParameterBuilder> parametersBuilder, Action<DbDataReader, int> dataReaders)
+		{
+			using (DbDataReader reader = CreateReader(commandText, commandTimeout, commandType, parametersBuilder))
+			{
+				if (dataReaders != null)
+				{
+					int resultSet = 0;
+
+					do
+					{
+						while (reader.Read())
+							dataReaders(reader, resultSet);
+
+						resultSet++;
+					} while (reader.NextResult());
+				}
+			}
+		}
+
+		public void ExecuteReader(string commandText, Action<DbParameterBuilder> parametersBuilder, Action<DbDataReader, int> dataReaders)
+		{
+			ExecuteReader(commandText, 0, CommandType.StoredProcedure, parametersBuilder, dataReaders);
+		}
+
 		public void ExecuteReader<T>(string commandText, int commandTimeout, CommandType commandType, Action<DbParameterBuilder> parametersBuilder,
 			Action<DbFieldMap<T>> resultMap, Action<T> readEntity) where T : new()
 		{

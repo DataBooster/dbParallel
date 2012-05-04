@@ -7,22 +7,22 @@ AS
 
 
 	EXEC xp_sprintf @tSQL OUTPUT, N'WAITFOR DELAY ''%s''', '00:00:10';
-	EXEC client.TPW_CALL_ADD_TASK @tPJob_ID, @tSQL, 1, N'Task1 sleep for 10 seconds.';
+	EXEC client.TPW_CALL_ADD_TASK @tPJob_ID, @tSQL, 60, N'Task1 sleep for 10 seconds.';
 	
 	EXEC xp_sprintf @tSQL OUTPUT, N'WAITFOR DELAY ''%s''', '00:01:10';
-	EXEC client.TPW_CALL_ADD_TASK @tPJob_ID, @tSQL, 1, N'Task2 sleep for 70 seconds.';
+	EXEC client.TPW_CALL_ADD_TASK @tPJob_ID, @tSQL, 60, N'Task2 sleep for 70 seconds.';
 
 	EXEC xp_sprintf @tSQL OUTPUT, N'WAITFOR DELAY ''%s''', '00:00:30';
-	EXEC client.TPW_CALL_ADD_TASK @tPJob_ID, @tSQL, 1, N'Task3 sleep for 30 seconds.';
+	EXEC client.TPW_CALL_ADD_TASK @tPJob_ID, @tSQL, 60, N'Task3 sleep for 30 seconds.';
 
 	EXEC xp_sprintf @tSQL OUTPUT, N'WAITFOR DELAY ''%s''', '00:01:10';
-	EXEC client.TPW_CALL_ADD_TASK @tPJob_ID, @tSQL, 2, N'Task4 sleep for 70 seconds.';
+	EXEC client.TPW_CALL_ADD_TASK @tPJob_ID, @tSQL, 120, N'Task4 sleep for 70 seconds.';
 
 	EXEC xp_sprintf @tSQL OUTPUT, N'WAITFOR DELAY ''%s''', '00:00:15';
-	EXEC client.TPW_CALL_ADD_CALLBACK_FOR_SUCCESS @tPJob_ID, @tSQL, 3, N'Sleep for 15s if all success.';
+	EXEC client.TPW_CALL_ADD_CALLBACK_FOR_SUCCESS @tPJob_ID, @tSQL, 180, N'Sleep for 15s if all success.';
 
 	EXEC xp_sprintf @tSQL OUTPUT, N'WAITFOR DELAY ''%s''', '00:00:25';
-	EXEC client.TPW_CALL_ADD_CALLBACK_FOR_FAIL @tPJob_ID, @tSQL, 3, N'Sleep for 25s if fail.';
+	EXEC client.TPW_CALL_ADD_CALLBACK_FOR_FAIL @tPJob_ID, @tSQL, 180, N'Sleep for 25s if fail.';
 
 
 	EXEC client.TPW_CALL_START_PJOB @tPJob_ID;
