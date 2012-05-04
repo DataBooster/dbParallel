@@ -21,22 +21,22 @@ BEGIN
 	tPJob_ID	:= XYZ.TPW_CALL.CREATE_PJOB('App1', 'User1', 'This is test1.');
 
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 10);
-	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 1, 'Task1 sleep for 10 seconds.');
+	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 60, 'Task1 sleep for 10 seconds.');
 	
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 70);
-	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 1, 'Task2 sleep for 70 seconds.');
+	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 60, 'Task2 sleep for 70 seconds.');
 
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 30);
-	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 1, 'Task3 sleep for 30 seconds.');
+	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 60, 'Task3 sleep for 30 seconds.');
 
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 70);
-	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 2, 'Task4 sleep for 70 seconds.');
+	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 120, 'Task4 sleep for 70 seconds.');
 
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 15);
-	XYZ.TPW_CALL.ADD_CALLBACK_FOR_SUCCESS(tPJob_ID, tSQL, 3, 'Sleep for 15s if all success.');
+	XYZ.TPW_CALL.ADD_CALLBACK_FOR_SUCCESS(tPJob_ID, tSQL, 180, 'Sleep for 15s if all success.');
 
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 25);
-	XYZ.TPW_CALL.ADD_CALLBACK_FOR_FAIL(tPJob_ID, tSQL, 3, 'Sleep for 25s if fail.');
+	XYZ.TPW_CALL.ADD_CALLBACK_FOR_FAIL(tPJob_ID, tSQL, 180, 'Sleep for 25s if fail.');
 
 	XYZ.TPW_CALL.START_PJOB(tPJob_ID);
 
