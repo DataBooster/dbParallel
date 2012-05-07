@@ -68,6 +68,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{0BD1299C-6AE3-407C-844D-F69B90037846}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dispatcher\Dispatcher.csproj">
       <Project>{8FE49098-9C54-43F7-876A-1486573FADF2}</Project>
       <Name>Dispatcher</Name>
@@ -80,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
