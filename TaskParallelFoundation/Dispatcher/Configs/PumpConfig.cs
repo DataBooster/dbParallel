@@ -6,7 +6,7 @@ using DbParallel.Dispatcher.Models;
 
 namespace DbParallel.Dispatcher.Configs
 {
-	internal static class PumpConfig
+	public static class PumpConfig
 	{
 		private static DbProviderFactory _DbProviderFactory;
 		public static DbProviderFactory DbProviderFactory
@@ -29,7 +29,7 @@ namespace DbParallel.Dispatcher.Configs
 		private static DbAppSettings _DbAppSettings;
 		private static ParallelOptions _ParallelOption;
 
-		public static DbAppSettings AppSettingsInDb
+		internal static DbAppSettings AppSettingsInDb
 		{
 			set
 			{
@@ -53,17 +53,17 @@ namespace DbParallel.Dispatcher.Configs
 				ThreadPool.SetMaxThreads(workerThreads, maxIOC);
 		}
 
-		public static int PrimaryInterval
+		internal static int PrimaryInterval
 		{
 			get { return _DbAppSettings.PrimaryInterval; }
 		}
 
-		public static int StandbyInterval
+		internal static int StandbyInterval
 		{
 			get { return _DbAppSettings.StandbyInterval; }
 		}
 
-		public static ParallelOptions ParallelOption
+		internal static ParallelOptions ParallelOption
 		{
 			get { return PumpConfig._ParallelOption; }
 		}
