@@ -8,7 +8,7 @@ using DbParallel.DataAccess;
 
 namespace DbParallel.Dispatcher
 {
-	using Models;
+	using DbInterface;
 	using Configs;
 
 	public class PumpMain : IDisposable

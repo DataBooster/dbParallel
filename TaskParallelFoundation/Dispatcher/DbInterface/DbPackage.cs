@@ -4,7 +4,7 @@ using System.Data.Common;
 using DbParallel.DataAccess;
 using DbParallel.Dispatcher.Configs;
 
-namespace DbParallel.Dispatcher.Models
+namespace DbParallel.Dispatcher.DbInterface
 {
 	internal static class DbPackage
 	{

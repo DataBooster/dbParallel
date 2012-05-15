@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DbParallel.Dispatcher.Models
+namespace DbParallel.Dispatcher.DbInterface
 {
 	internal struct DbAppSettings
 	{

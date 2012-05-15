@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Data.Common;
 using System.Configuration;
-using DbParallel.Dispatcher.Models;
+using DbParallel.Dispatcher.DbInterface;
 
 namespace DbParallel.Dispatcher.Configs
 {
