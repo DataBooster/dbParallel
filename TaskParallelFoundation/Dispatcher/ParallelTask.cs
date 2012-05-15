@@ -3,7 +3,7 @@ using DbParallel.DataAccess;
 
 namespace DbParallel.Dispatcher
 {
-	using Models;
+	using DbInterface;
 
 	internal class ParallelTask
 	{

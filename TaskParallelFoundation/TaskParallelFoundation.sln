@@ -14,6 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\Setup for Oracle.txt = Documents\Setup for Oracle.txt
 		Documents\Setup for SQL Server.txt = Documents\Setup for SQL Server.txt
 		Documents\StateTransitionDiagram.doc = Documents\StateTransitionDiagram.doc
+		Documents\wikipage_home.htm = Documents\wikipage_home.htm
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PumpService", "PumpService\PumpService.csproj", "{94B30A6D-4E3E-439A-865C-16425F407D5E}"
