@@ -13,9 +13,10 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>QCCAAAAAACAAAAAAAACAAAABAAAAAAAAIAAAAAAIAAA=</HashCode>
+      <HashCode>QCSAAAAAAGAAAAAAAAAAAAAAAAAAAAAAKAEAAAAIAAA=</HashCode>
       <FileName>PumpMain.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="DbParallel.Dispatcher.ParallelJob">
     <Position X="2.5" Y="0.5" Width="1.75" />
@@ -39,26 +40,26 @@
       <FileName>Configs\PumpConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DbParallel.Dispatcher.Models.DbPackage">
-    <Position X="8.5" Y="0.5" Width="1.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAQAAEAAAAAECAIAgIAAAAAAAAAAAABAEAQAAAAA=</HashCode>
-      <FileName>Models\DbPackage.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="DbParallel.Dispatcher.PumpSynchronizer">
     <Position X="2.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAACABAAAACAAACAEAAAIAACAQAAAAAAAAEAA=</HashCode>
+      <HashCode>AAAACAAAACQBAAAAAAAAAAEAAAIAAAAQAAQCAAAAEAA=</HashCode>
       <FileName>PumpSynchronizer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Struct Name="DbParallel.Dispatcher.Models.DbAppSettings">
-    <Position X="6.5" Y="4.25" Width="2" />
+  <Class Name="DbParallel.Dispatcher.DbInterface.DbPackage">
+    <Position X="8.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAEAAAAAECAIAgIAAAAAAAAAAAABAEAQAAAAA=</HashCode>
+      <FileName>DbInterface\DbPackage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="DbParallel.Dispatcher.DbInterface.DbAppSettings">
+    <Position X="6.5" Y="4.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAIAAAAAAAEAAAAAAgAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\DbAppSettings.cs</FileName>
+      <FileName>DbInterface\DbAppSettings.cs</FileName>
     </TypeIdentifier>
   </Struct>
   <Font Name="Tahoma" Size="8.25" />
