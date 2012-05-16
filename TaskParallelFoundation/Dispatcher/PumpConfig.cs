@@ -4,7 +4,7 @@ using System.Data.Common;
 using System.Configuration;
 using DbParallel.Dispatcher.DbInterface;
 
-namespace DbParallel.Dispatcher.Configs
+namespace DbParallel.Dispatcher
 {
 	public static class PumpConfig
 	{

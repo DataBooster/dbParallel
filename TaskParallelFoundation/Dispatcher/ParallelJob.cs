@@ -3,12 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using DbParallel.DataAccess;
+using DbParallel.Dispatcher.DbInterface;
 
 namespace DbParallel.Dispatcher
 {
-	using DbInterface;
-	using Configs;
-
 	internal class ParallelJob : IDisposable
 	{
 		private int _PJobID;

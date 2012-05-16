@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using DbParallel.Dispatcher;
 using DbParallel.DataAccess;
-using DbParallel.Dispatcher.Configs;
 
 namespace DbParallel.ConsoleTest
 {

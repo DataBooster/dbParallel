@@ -5,12 +5,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using DbParallel.DataAccess;
+using DbParallel.Dispatcher.DbInterface;
 
 namespace DbParallel.Dispatcher
 {
-	using DbInterface;
-	using Configs;
-
 	public class PumpMain : IDisposable
 	{
 		public enum ServiceMode

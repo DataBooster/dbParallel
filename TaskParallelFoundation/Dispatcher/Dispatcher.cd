@@ -33,11 +33,11 @@
       <FileName>ParallelTask.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DbParallel.Dispatcher.Configs.PumpConfig">
+  <Class Name="DbParallel.Dispatcher.PumpConfig">
     <Position X="6.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAAAYAAABAAAEAIAwBQEAACAQAAAAAAA=</HashCode>
-      <FileName>Configs\PumpConfig.cs</FileName>
+      <FileName>PumpConfig.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DbParallel.Dispatcher.PumpSynchronizer">
