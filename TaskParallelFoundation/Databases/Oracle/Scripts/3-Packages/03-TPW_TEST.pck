@@ -101,7 +101,7 @@ AS
 	tPJob_ID	PLS_INTEGER;
 	tSQL		VARCHAR2(256);
 BEGIN
-	tPJob_ID	:= XYZ.TPW_CALL.CREATE_PJOB('App1', 'User1', 'This is test1.');
+	tPJob_ID	:= XYZ.TPW_CALL.CREATE_PJOB('App4', 'User4', 'This is test4.');
 
 	tSQL	:= UTL_LMS.FORMAT_MESSAGE('DBMS_LOCK.SLEEP(%d)', 10);
 	XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 60, 'Task1 sleep for 10 seconds.');

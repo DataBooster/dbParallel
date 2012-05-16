@@ -1,10 +1,9 @@
 ﻿using System;
 using DbParallel.DataAccess;
+using DbParallel.Dispatcher.DbInterface;
 
 namespace DbParallel.Dispatcher
 {
-	using DbInterface;
-
 	internal class ParallelTask
 	{
 		private int _PJobID;

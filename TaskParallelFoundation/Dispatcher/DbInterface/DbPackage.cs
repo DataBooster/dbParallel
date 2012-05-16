@@ -2,7 +2,6 @@
 using System.Data;
 using System.Data.Common;
 using DbParallel.DataAccess;
-using DbParallel.Dispatcher.Configs;
 
 namespace DbParallel.Dispatcher.DbInterface
 {

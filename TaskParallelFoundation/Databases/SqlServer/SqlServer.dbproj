@@ -371,6 +371,15 @@
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\TPW_SERVICE_RECENT_WK_LOG.proc.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\test\Programmability\Stored Procedures\TPW_TEST_2.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\test\Programmability\Stored Procedures\TPW_TEST_3.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\test\Programmability\Stored Procedures\TPW_TEST_4.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <NotInBuild Include="Scripts\Post-Deployment\1-TPW_PUMP_CONFIG.sql">

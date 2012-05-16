@@ -7,8 +7,10 @@ namespace DbParallel.DataAccess
 {
 	public partial class DbAccess : IDisposable
 	{
-		private DbConnection _Connection;
 		private const int _MaxRetryCount = 2;
+		private DbConnection _Connection;
+
+		public DbConnection Connection { get { return _Connection; } }
 
 		public DbAccess(DbProviderFactory dbProviderFactory, string connectionString)
 		{
