@@ -53,6 +53,7 @@
     <Compile Include="Oracle\DbAccess.cs" />
     <Compile Include="Oracle\DbExtensions.partial.cs" />
     <Compile Include="Oracle\DbParameterBuilder.partial.cs" />
+    <Compile Include="ParallelExecuteWaitHandle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

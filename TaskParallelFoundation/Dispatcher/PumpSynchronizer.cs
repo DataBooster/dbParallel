@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using DbParallel.DataAccess;
 
 namespace DbParallel.Dispatcher
 {
-	internal class PumpSynchronizer : IDisposable
+	internal class PumpSynchronizer : ParallelExecuteWaitHandle
 	{
 		private volatile bool _KeepPumping;
-		private ManualResetEvent _EndingEvent;
-		private int _ExecutingCount;
 
 		public PumpSynchronizer()
+			: base(false)
 		{
 			_KeepPumping = false;
-			_EndingEvent = new ManualResetEvent(false);
-			_ExecutingCount = 0;
 		}
 
 		public bool KeepPumping
@@ -22,33 +20,16 @@ namespace DbParallel.Dispatcher
 			get { return _KeepPumping; }
 		}
 
-		private void EnterTask()
+		protected override void EnterTask()
 		{
 			Interlocked.Increment(ref _ExecutingCount);
 		}
 
-		private void ExitTask()
+		protected override void ExitTask()
 		{
 			if (Interlocked.Decrement(ref _ExecutingCount) == 0)
 				if (_KeepPumping == false)
-					_EndingEvent.Set();
-		}
-
-		public Task StartNewTask(Action action)
-		{
-			EnterTask();
-
-			return Task.Factory.StartNew(() =>
-			{
-				try
-				{
-					action();
-				}
-				finally
-				{
-					ExitTask();
-				}
-			});
+					_CompleteEvent.Set();
 		}
 
 		public Task StartPump(Action action)
@@ -65,17 +46,7 @@ namespace DbParallel.Dispatcher
 		{
 			_KeepPumping = false;
 
-			if (_ExecutingCount > 0)
-				_EndingEvent.WaitOne();
-		}
-
-		public void Dispose()
-		{
-			if (_EndingEvent != null)
-			{
-				_EndingEvent.Close();
-				_EndingEvent = null;
-			}
+			Wait();
 		}
 	}
 }
