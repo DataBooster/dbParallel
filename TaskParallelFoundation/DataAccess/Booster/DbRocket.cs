@@ -1,35 +1,25 @@
-﻿#if ORACLE
-using System;
-#if DATADIRECT
-using DDTek.Oracle;
-#else // ODP.NET
-using Oracle.DataAccess.Client;
-#endif
+﻿using System;
 
-namespace DbParallel.DataAccess
+namespace DbParallel.DataAccess.Booster
 {
-	public partial class DbAccess
+	public abstract class DbRocket : IDisposable
 	{
-		partial void OnOracleConnectionLoss(Exception dbException, ref bool canRetry)
-		{
-			if (_Connection is OracleConnection)
-			{
-				OracleException e = dbException as OracleException;
+		protected readonly int _BulkSize;
+		protected int _FillingCount;
 
-				if (e == null)
-					canRetry = false;
-				else
-					switch (e.Number)
-					{
-						case 4068: canRetry = true; break;
-						// To add other cases
-						default: canRetry = false; break;
-					}
-			}
+		public DbRocket(int bulkSize)
+		{
+			_BulkSize = bulkSize;
+			_FillingCount = 0;
 		}
+
+		public abstract bool AddRow(params IConvertible[] values);
+		public abstract int Launch();
+
+		public abstract void Dispose();
 	}
 }
-#endif
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -40,8 +30,8 @@ namespace DbParallel.DataAccess
 //	You must not remove this notice, or any other, from this software.
 //
 //	Original Author:	Abel Cheng <abelcys@gmail.com>
-//	Created Date:		2012-03-23
-//	Primary Host:		http://dbParallel.codeplex.com
+//	Created Date:		2012-06-10
+//	Primary Host:		http://databooster.codeplex.com
 //	Change Log:
 //	Author				Date			Comment
 //
