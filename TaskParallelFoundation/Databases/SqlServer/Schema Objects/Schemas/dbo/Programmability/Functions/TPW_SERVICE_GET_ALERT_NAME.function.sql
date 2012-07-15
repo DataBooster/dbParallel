@@ -1,14 +1,12 @@
-﻿CREATE TABLE TPW_WF_STATE
+﻿CREATE FUNCTION dbo.TPW_SERVICE_GET_ALERT_NAME
 (
-	STATE_ID			SMALLINT		NOT NULL,
-	ACTIVITY			NVARCHAR(32)	NOT NULL,
-	STATE_NAME			NVARCHAR(32)	NOT NULL,
-	IS_DONE				BIT	DEFAULT 0	NOT NULL,
-	DESCRIPTION_		NVARCHAR(256),
-	CONSTRAINT PK_TPW_WF_STATE PRIMARY KEY (STATE_ID),
-	CONSTRAINT UK_TPW_WF_STATE UNIQUE (ACTIVITY, STATE_NAME),
-	CONSTRAINT FK_TPW_WF_STATE_ACTIVITY FOREIGN KEY (ACTIVITY) REFERENCES TPW_WF_ACTIVITY (ACTIVITY)
-);
+	@inPJob_ID	INT
+)
+RETURNS VARCHAR(30)
+AS
+BEGIN
+	RETURN  'pJob#' + CAST(@inPJob_ID AS VARCHAR(10)) + 'Done';
+END;
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -19,7 +17,7 @@
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		2012-03-23
+--	Created Date:		2012-07-12
 --	Primary Host:		http://dbParallel.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

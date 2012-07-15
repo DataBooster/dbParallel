@@ -27,6 +27,8 @@ AS
 		AND	PJOB_ID			= @inPJob_ID
 		AND	@tNew_State_ID	!= @tOld_State_ID;
 
+	EXEC TPW_SERVICE_SET_SIGNAL @inPJob_ID, @tOld_State_ID, @inEvent_Name, @tNew_State_ID;
+
 	IF	@inLog = 1
 	BEGIN
 		IF @inMessage IS NULL

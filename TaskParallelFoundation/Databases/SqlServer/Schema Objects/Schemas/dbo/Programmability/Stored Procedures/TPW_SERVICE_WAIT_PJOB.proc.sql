@@ -1,14 +1,29 @@
-﻿CREATE TABLE TPW_WF_STATE
+﻿CREATE PROCEDURE dbo.TPW_SERVICE_WAIT_PJOB
 (
-	STATE_ID			SMALLINT		NOT NULL,
-	ACTIVITY			NVARCHAR(32)	NOT NULL,
-	STATE_NAME			NVARCHAR(32)	NOT NULL,
-	IS_DONE				BIT	DEFAULT 0	NOT NULL,
-	DESCRIPTION_		NVARCHAR(256),
-	CONSTRAINT PK_TPW_WF_STATE PRIMARY KEY (STATE_ID),
-	CONSTRAINT UK_TPW_WF_STATE UNIQUE (ACTIVITY, STATE_NAME),
-	CONSTRAINT FK_TPW_WF_STATE_ACTIVITY FOREIGN KEY (ACTIVITY) REFERENCES TPW_WF_ACTIVITY (ACTIVITY)
-);
+	@inPJob_ID	INT
+)
+AS
+	SET NOCOUNT ON;
+	DECLARE	@tIs_Done		BIT;
+	DECLARE	@tAlert_Name	VARCHAR(30);	--	:= GET_ALERT_NAME(inPJob_ID);
+	DECLARE	@tMessage		NVARCHAR(32);
+	DECLARE	@tStatus		BIT;
+
+	SET	@tAlert_Name = dbo.TPW_SERVICE_GET_ALERT_NAME(@inPJob_ID);
+	EXEC TPW_DBMS_ALERT_REGISTER @tAlert_Name;
+
+	SELECT	@tIs_Done = S.IS_DONE
+	FROM
+			TPW_WF_STATE	S,
+			TPW_PJOB		J
+	WHERE
+			S.STATE_ID	= J.STATE_ID
+		AND	J.PJOB_ID	= @inPJob_ID;
+
+	IF @tIs_Done = 0
+		EXEC TPW_DBMS_ALERT_WAITONE @tAlert_Name, @tMessage OUTPUT, @tStatus OUTPUT;
+
+	EXEC TPW_DBMS_ALERT_REMOVE @tAlert_Name;
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -19,7 +34,7 @@
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		2012-03-23
+--	Created Date:		2012-07-12
 --	Primary Host:		http://dbParallel.codeplex.com
 --	Change Log:
 --	Author				Date			Comment
