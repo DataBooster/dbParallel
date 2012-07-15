@@ -1,14 +1,23 @@
-﻿CREATE TABLE TPW_WF_STATE
+﻿CREATE PROCEDURE dbo.TPW_DBMS_ALERT_REGISTER
 (
-	STATE_ID			SMALLINT		NOT NULL,
-	ACTIVITY			NVARCHAR(32)	NOT NULL,
-	STATE_NAME			NVARCHAR(32)	NOT NULL,
-	IS_DONE				BIT	DEFAULT 0	NOT NULL,
-	DESCRIPTION_		NVARCHAR(256),
-	CONSTRAINT PK_TPW_WF_STATE PRIMARY KEY (STATE_ID),
-	CONSTRAINT UK_TPW_WF_STATE UNIQUE (ACTIVITY, STATE_NAME),
-	CONSTRAINT FK_TPW_WF_STATE_ACTIVITY FOREIGN KEY (ACTIVITY) REFERENCES TPW_WF_ACTIVITY (ACTIVITY)
-);
+	@inAlert_Name	VARCHAR(30)
+)
+AS
+	SET NOCOUNT ON;
+	DECLARE	@tNow DATETIME, @tExpiry_Time DATETIME;
+
+	SET	@tNow			= GETDATE();
+	SET	@tExpiry_Time	= DATEADD(hour, 12, @tNow);
+
+	UPDATE	TPW_DBMS_ALERT
+	SET		REFERENCE_COUNT	= REFERENCE_COUNT + 1,
+			LAST_REGISTER	= @tNow,
+			EXPIRY_TIME		= CASE WHEN @tExpiry_Time < EXPIRY_TIME THEN EXPIRY_TIME ELSE @tExpiry_Time END
+	WHERE	ALERT_NAME		= @inAlert_Name;
+
+	IF @@ROWCOUNT = 0
+		INSERT INTO	TPW_DBMS_ALERT (ALERT_NAME, ALERT_SIGNAL, REFERENCE_COUNT, FIRST_REGISTER, LAST_REGISTER, EXPIRY_TIME)
+		VALUES (@inAlert_Name, 0, 0, @tNow, @tNow, @tExpiry_Time);
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -19,7 +28,7 @@
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		2012-03-23
+--	Created Date:		2012-07-12
 --	Primary Host:		http://dbParallel.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

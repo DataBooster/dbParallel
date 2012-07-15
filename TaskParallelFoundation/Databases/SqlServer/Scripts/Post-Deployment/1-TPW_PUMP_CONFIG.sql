@@ -33,3 +33,6 @@ values ('STANDBY_BEAT', null, '2012-01-01', '', 'Heartbeat of Standby Pump Servi
 
 insert into TPW_PUMP_CONFIG (ELEMENT_NAME, NUMBER_VALUE, DATE_VALUE, STRING_VALUE, DESCRIPTION_)
 values ('STANDBY_INTERVAL', 30, null, '', 'Standby Services Ping Interval (Seconds).');
+
+insert into TPW_PUMP_CONFIG (ELEMENT_NAME, NUMBER_VALUE, DATE_VALUE, STRING_VALUE, DESCRIPTION_)
+values ('STATUS_POLLING_INTERVAL', null, null, '00:00:00.500', 'The Polling Interval for waiting a PJob complete.');

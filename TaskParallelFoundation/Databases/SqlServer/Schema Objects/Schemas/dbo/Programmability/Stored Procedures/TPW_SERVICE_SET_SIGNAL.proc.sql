@@ -1,14 +1,30 @@
-﻿CREATE TABLE TPW_WF_STATE
+﻿CREATE PROCEDURE dbo.TPW_SERVICE_SET_SIGNAL
 (
-	STATE_ID			SMALLINT		NOT NULL,
-	ACTIVITY			NVARCHAR(32)	NOT NULL,
-	STATE_NAME			NVARCHAR(32)	NOT NULL,
-	IS_DONE				BIT	DEFAULT 0	NOT NULL,
-	DESCRIPTION_		NVARCHAR(256),
-	CONSTRAINT PK_TPW_WF_STATE PRIMARY KEY (STATE_ID),
-	CONSTRAINT UK_TPW_WF_STATE UNIQUE (ACTIVITY, STATE_NAME),
-	CONSTRAINT FK_TPW_WF_STATE_ACTIVITY FOREIGN KEY (ACTIVITY) REFERENCES TPW_WF_ACTIVITY (ACTIVITY)
-);
+	@inPJob_ID			INT,
+	@inOld_State_ID		SMALLINT,
+	@inEvent_Name		NVARCHAR(32),
+	@inNew_State_ID		SMALLINT
+)
+AS
+	DECLARE	@tAlert_Name	VARCHAR(30);
+
+	IF @inNew_State_ID <> @inOld_State_ID
+		IF EXISTS
+		(
+			SELECT 1
+			FROM
+				TPW_WF_STATE	O,
+				TPW_WF_STATE	N
+			WHERE
+					O.STATE_ID	= @inOld_State_ID
+				AND	N.STATE_ID	= @inNew_State_ID
+				AND	O.IS_DONE	= 0
+				AND	N.IS_DONE	= 1
+		)
+		BEGIN
+			SET	@tAlert_Name	= dbo.TPW_SERVICE_GET_ALERT_NAME(@inPJob_ID);
+			EXEC TPW_DBMS_ALERT_SIGNAL @tAlert_Name, @inEvent_Name
+		END;
 
 ----------------------------------------------------------------------------------------------------
 --
@@ -19,7 +35,7 @@
 --	You must not remove this notice, or any other, from this software.
 --
 --	Original Author:	Abel Cheng <abelcys@gmail.com>
---	Created Date:		2012-03-23
+--	Created Date:		2012-07-13
 --	Primary Host:		http://dbParallel.codeplex.com
 --	Change Log:
 --	Author				Date			Comment

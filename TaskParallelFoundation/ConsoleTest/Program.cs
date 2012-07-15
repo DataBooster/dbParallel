@@ -15,6 +15,7 @@ namespace DbParallel.ConsoleTest
 			PumpMain pump = new PumpMain();
 
 			pump.Start();
+			Console.WriteLine("The Pump Service is running ...");
 
 			Task.Factory.StartNew(() =>
 				{

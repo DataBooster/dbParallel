@@ -10,7 +10,7 @@ CREATE TABLE XYZ.TPW_WF_ACTIVITY
 	CONSTRAINT PK_TPW_WF_ACTIVITY PRIMARY KEY (ACTIVITY)
 )
 ORGANIZATION INDEX
-STORAGE (INITIAL 16K NEXT 8K);
+STORAGE (INITIAL 16K NEXT 8K BUFFER_POOL KEEP);
 
 ----------------------------------------------------------------------------------------------------
 --
