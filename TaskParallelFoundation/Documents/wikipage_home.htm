@@ -4,7 +4,7 @@
 	<title>dbParallel WikiPage Home</title>
 </head>
 <body>
-<p><strong>Project Description</strong><br />The dbParallel is a Database Task Parallel Foundation that provides database developers an application level support for parallel programming. Being distinct from Oracle 11g R2's DBMS_PARALLEL_EXECUTE parallelism within a query by chunks, dbParallel works more like a .NET Task Parallel Library implemented on database side, it handles the partitioning of the asynchronous job, the scheduling of tasks, state management, and other low-level details in a lightweight implement which using about eight hundred lines of SQL code and one thousand lines of C# code in total (except test code).</p>
+<p><strong>Project Description</strong><br />The dbParallel is a Database Task Parallel Foundation that provides database developers an application level support for parallel programming. Being distinct from Oracle 11g R2's DBMS_PARALLEL_EXECUTE parallelism within a query by chunks, dbParallel works more like a .NET Task Parallel Library implemented on database side, it handles the partitioning of the asynchronous job, the scheduling of tasks, state management, and other low-level details in a lightweight implementation.</p>
 <div><strong>Get started</strong><br />A quick example (for Oracle Version)</div>
 <div style="color: black; background-color: white;">
 <pre><span style="color: blue;">PROCEDURE</span> TEST_1
@@ -12,27 +12,27 @@
     tPJob_ID    PLS_INTEGER;
     tSQL        VARCHAR2(256);
 <span style="color: blue;">BEGIN</span>
-    tPJob_ID := XYZ.TPW_CALL.CREATE_PJOB(<span style="color: #a31515;">'App1'</span>, <span style="color: #a31515;">'User1'</span>, <span style="color: #a31515;">'This is test1.'</span>);
+    tPJob_ID := <span style="color: #808080;">XYZ.TPW_CALL.</span>CREATE_PJOB(<span style="color: #a31515;">'App1'</span>, <span style="color: #a31515;">'User1'</span>, <span style="color: #a31515;">'This is test1.'</span>);
 
     tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color: #a31515;">'DBMS_LOCK.SLEEP(%d)'</span>, 10);
-    XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 60, <span style="color: #a31515;">'Task1 sleep for 10 seconds.'</span>);
+    <span style="color: #808080;">XYZ.TPW_CALL.</span>ADD_TASK(tPJob_ID, tSQL, 60, <span style="color: #a31515;">'Task1 sleep for 10 seconds.'</span>);
     
     tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color: #a31515;">'DBMS_LOCK.SLEEP(%d)'</span>, 70);
-    XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 60, <span style="color: #a31515;">'Task2 sleep for 70 seconds.'</span>);
+    <span style="color: #808080;">XYZ.TPW_CALL.</span>ADD_TASK(tPJob_ID, tSQL, 60, <span style="color: #a31515;">'Task2 sleep for 70 seconds.'</span>);
 
     tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color: #a31515;">'DBMS_LOCK.SLEEP(%d)'</span>, 30);
-    XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 60, <span style="color: #a31515;">'Task3 sleep for 30 seconds.'</span>);
+    <span style="color: #808080;">XYZ.TPW_CALL.</span>ADD_TASK(tPJob_ID, tSQL, 60, <span style="color: #a31515;">'Task3 sleep for 30 seconds.'</span>);
 
     tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color: #a31515;">'DBMS_LOCK.SLEEP(%d)'</span>, 70);
-    XYZ.TPW_CALL.ADD_TASK(tPJob_ID, tSQL, 120, <span style="color: #a31515;">'Task4 sleep for 70 seconds.'</span>);
+    <span style="color: #808080;">XYZ.TPW_CALL.</span>ADD_TASK(tPJob_ID, tSQL, 120, <span style="color: #a31515;">'Task4 sleep for 70 seconds.'</span>);
 
     tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color: #a31515;">'DBMS_LOCK.SLEEP(%d)'</span>, 15);
-    XYZ.TPW_CALL.ADD_CALLBACK_FOR_SUCCESS(tPJob_ID, tSQL, 180, <span style="color: #a31515;">'Sleep for 15s if all success.'</span>);
+    <span style="color: #808080;">XYZ.TPW_CALL.</span>ADD_CALLBACK_FOR_SUCCESS(tPJob_ID, tSQL, 180, <span style="color: #a31515;">'Sleep for 15s if all success.'</span>);
 
     tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color: #a31515;">'DBMS_LOCK.SLEEP(%d)'</span>, 25);
-    XYZ.TPW_CALL.ADD_CALLBACK_FOR_FAIL(tPJob_ID, tSQL, 180, <span style="color: #a31515;">'Sleep for 25s if fail.'</span>);
+    <span style="color: #808080;">XYZ.TPW_CALL.</span>ADD_CALLBACK_FOR_FAIL(tPJob_ID, tSQL, 180, <span style="color: #a31515;">'Sleep for 25s if fail.'</span>);
 
-    XYZ.TPW_CALL.START_PJOB(tPJob_ID);
+    <span style="color: #808080;">XYZ.TPW_CALL.</span>START_PJOB(tPJob_ID);
 
     DBMS_OUTPUT.PUT_LINE(<span style="color: #a31515;">'New PJob_ID#'</span> || tPJob_ID);
 <span style="color: blue;">END</span> TEST_1;</pre>
@@ -40,13 +40,14 @@
 <div>The example executes Task1-4 in parallel and when everything is finished, the callback task is executed <em>(in this case callback will be a fail since task 2 failed - timeout)</em>.<br /><img style="vertical-align: middle;" src="http://www.codeplex.com/Download?ProjectName=dbparallel&amp;DownloadId=370939" alt="" width="635" height="230" /></div>
 <p><strong>Features</strong><br />Following API list of current version reflects the features:</p>
 <ol>
-<li>XYZ.TPW_CALL.CREATE_PJOB<br />Each of the above sample processing units are called a PJob. PJob represents an asynchronous operation. This method returns a pJob Id for below methods (2, 3, 4, 5, 6). </li>
-<li>XYZ.TPW_CALL.ADD_TASK<br />Each pJob contains one or more parallel tasks. Each task is a dynamic SQL. Call the ADD_TASK multiple times to add every parallel tasks into the pJob. </li>
-<li>XYZ.TPW_CALL.ADD_CALLBACK_FOR_SUCCESS<br />This is a optional method. Since a pJob is asynchronous, the callback Task is called to execute a continuation when all the parallel Tasks successfully completed. </li>
-<li>XYZ.TPW_CALL.ADD_CALLBACK_FOR_FAIL<br />This is a optional method. Similar but opposite to previous callback for success, the callback Task for fail is called to execute a continuation when all the parallel Tasks completed but any of them throw out database exception(s). </li>
-<li>XYZ.TPW_CALL.START_PJOB<br />Starts the pJob, scheduling it for execution. </li>
-<li>XYZ.TPW_CALL.TRY_CANCEL_PJOB<br />Try to cancel a scheduled pJob if it hasn't begin to execute. </li>
-<li>XYZ.TPW_CALL.START_NEW_SINGLE_TASK<br />This method encapsulates a series of steps for conveniently creating and starting single task and callback task. </li>
+<li><span style="color: #808080;">XYZ.TPW_CALL.</span>CREATE_PJOB<br />Each of the above sample processing units are called a PJob. PJob represents an asynchronous operation. This method returns a pJob Id for below methods (2, 3, 4, 5, 6). </li>
+<li><span style="color: #808080;">XYZ.TPW_CALL.</span>ADD_TASK<br />Each pJob contains one or more parallel tasks. Each task is a dynamic SQL. Call the ADD_TASK multiple times to add every parallel tasks into the pJob. </li>
+<li><span style="color: #808080;">XYZ.TPW_CALL.</span>ADD_CALLBACK_FOR_SUCCESS<br />This is a optional method. Since a pJob is asynchronous, the callback Task is called to execute a continuation when all the parallel Tasks successfully completed. </li>
+<li><span style="color: #808080;">XYZ.TPW_CALL.</span>ADD_CALLBACK_FOR_FAIL<br />This is a optional method. Similar but opposite to previous callback for success, the callback Task for fail is called to execute a continuation when all the parallel Tasks completed but any of them throw out database exception(s). </li>
+<li><span style="color: #808080;">XYZ.TPW_CALL.</span>START_PJOB<br />Starts the pJob, scheduling it for execution. </li>
+<li><span style="color: #808080;">XYZ.TPW_CALL.</span>TRY_CANCEL_PJOB<br />Try to cancel a scheduled pJob if it hasn't begin to execute. </li>
+<li><span style="color: #808080;">XYZ.TPW_CALL.</span>START_NEW_SINGLE_TASK<br />This method encapsulates a series of steps for conveniently creating and starting single task and callback task. </li>
+<li><span style="color: #808080;">XYZ.TPW_CALL.</span>WAIT_PJOB<br />Waits for all provided Tasks (parallel subtasks and callback task) of a pJob to complete execution.<br />To support this method, Oracle version utilizes the signaling mechanism come from SYS.DBMS_ALERT package; SQL Serverv version imitates it by a polling loop at present.</li>
 </ol>
 <p>(XYZ is the schema name, it should be replaced by your schema name)</p>
 <p>Open the source code of Oracle package TPW_CALL <em>(or SQL Server stored procedures with prefix TPW_CALL_)</em> for detail parameters.</p>
@@ -71,7 +72,10 @@
 <ul>
 <li>Supported Databases:<br />- Oracle (dev and test on version 11g R1 and R2, hasn't try on earlier version);<br />- SQL Server 2005 or later version; </li>
 <li>Windows Service:<br />.NET Framework 4.0 Client Profile </li>
-<li>ADO.NET Provider:<br />- Oracle - <em>DataDirect Connect for ADO.NET v3.5 (the provider can be easily replaced by other provider for Oracle with the source code)</em><br />- SQL Server - .NET Framework build-in SqlClient provider. </li>
+<li>ADO.NET Provider:<br />+ Oracle - <em>DataDirect Connect for ADO.NET v3.5<br />
+&nbsp;Or&nbsp;&nbsp; - ODP.NET<br />
+&nbsp;(the provider can be easily replaced by other provider for Oracle with the source code)</em><br />
++ SQL Server - .NET Framework build-in SqlClient provider. </li>
 </ul>
 <p style="padding-left: 30px;">At present the dbParallel only support Oracle and SQL Server.</p>
 <p><strong>Contribute</strong></p>
@@ -79,6 +83,8 @@
 <li>Welcome all feedback through the CodePlex project (through comments, patches, or items in the Issue Tracker); </li>
 <li>Earnestly request adding support for other databases; </li>
 </ul>
+<p>Documentation</p>
+<p style="padding-left: 30px;">To be prepared ...</p>
 <p><strong>Support</strong></p>
 <p style="padding-left: 30px;">Feel free to use the source in your apps, and products.<br />For production support, please mark [PROD] in email subject to <a href="mailto:abelcys@gmail.com">abelcys@gmail.com</a>.<br />This project is developed in personal time, the source code support can be available only at night - Easten Time (US &amp; Canada).</p>
 </body>

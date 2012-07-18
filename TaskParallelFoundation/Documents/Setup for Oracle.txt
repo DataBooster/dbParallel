@@ -11,8 +11,9 @@
 		DbParallel.Dispatcher.dll
 		DbParallel.DataAccess.dll
 
-		(This binary distribution uses DataDirect Connect for ADO.NET v3.5 as the provider for Oracle,
-		Please download source code if you want to replace it by other ADO.NET provider)
+		There are two binary distributions separately for using DataDirect and using ODP.NET.
+		Please download source code if you want to replace it by other ADO.NET provider for Oracle.
+		(See also: http://databooster.codeplex.com)
 
 		Change DbParallel.PumpService.exe.config:
 			TPW_Database (under connectionStrings) to be custom database connection string;
