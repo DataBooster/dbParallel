@@ -17,7 +17,7 @@ AS
 
 	IF @@ROWCOUNT = 0
 		INSERT INTO	TPW_DBMS_ALERT (ALERT_NAME, ALERT_SIGNAL, REFERENCE_COUNT, FIRST_REGISTER, LAST_REGISTER, EXPIRY_TIME)
-		VALUES (@inAlert_Name, 0, 0, @tNow, @tNow, @tExpiry_Time);
+		VALUES (@inAlert_Name, 0, 1, @tNow, @tNow, @tExpiry_Time);
 
 ----------------------------------------------------------------------------------------------------
 --
