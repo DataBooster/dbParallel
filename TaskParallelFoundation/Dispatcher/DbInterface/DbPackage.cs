@@ -9,7 +9,7 @@ namespace DbParallel.Dispatcher.DbInterface
 	{
 		public static DbAccess CreateConnection()
 		{
-			return new DbAccess(PumpConfig.DbProviderFactory, PumpConfig.ConnectionString);
+			return DbParallel.Dispatcher.DataAccess.DbPackage.CreateConnection();
 		}
 
 		private static string GetProcedure(string sp)
@@ -24,10 +24,10 @@ namespace DbParallel.Dispatcher.DbInterface
 
 			dbAccess.ExecuteNonQuery(GetProcedure(sp), parameters =>
 				{
-					outPrimaryInterval = parameters.Add().SetName("outPrimary_Interval").SetDirection(ParameterDirection.Output).SetDbType(DbType.Int32);
-					outStandbyInterval = parameters.Add().SetName("outStandby_Interval").SetDirection(ParameterDirection.Output).SetDbType(DbType.Int32);
-					outDegreeOfTaskParallelism = parameters.Add().SetName("outDegree_Task_Parallelism").SetDirection(ParameterDirection.Output).SetDbType(DbType.Int32);
-					outMaxThreadsInPool = parameters.Add().SetName("outMax_Threads_In_Pool").SetDirection(ParameterDirection.Output).SetDbType(DbType.Int32);
+					outPrimaryInterval = parameters.AddOutput("outPrimary_Interval").SetDbType(DbType.Int32);
+					outStandbyInterval = parameters.AddOutput("outStandby_Interval").SetDbType(DbType.Int32);
+					outDegreeOfTaskParallelism = parameters.AddOutput("outDegree_Task_Parallelism").SetDbType(DbType.Int32);
+					outMaxThreadsInPool = parameters.AddOutput("outMax_Threads_In_Pool").SetDbType(DbType.Int32);
 				});
 
 			return new DbAppSettings(
@@ -45,7 +45,7 @@ namespace DbParallel.Dispatcher.DbInterface
 
 			dbAccess.ExecuteNonQuery(GetProcedure(sp), parameters =>
 				{
-					outParameter = parameters.Add().SetName("outSwitch_To_Mode").SetDirection(ParameterDirection.Output).SetSize(PumpMain.ServiceModeMaxLen);
+					outParameter = parameters.AddOutput("outSwitch_To_Mode", PumpMain.ServiceModeMaxLen);
 				});
 
 			return outParameter.Value as string;
@@ -58,7 +58,7 @@ namespace DbParallel.Dispatcher.DbInterface
 
 			dbAccess.ExecuteReader(GetProcedure(sp), parameters =>
 				{
-					outParameter = parameters.Add().SetName("outSwitch_To_Mode").SetDirection(ParameterDirection.Output).SetSize(PumpMain.ServiceModeMaxLen);
+					outParameter = parameters.AddOutput("outSwitch_To_Mode", PumpMain.ServiceModeMaxLen);
 				}, jobsReader);
 
 			return outParameter.Value as string;
