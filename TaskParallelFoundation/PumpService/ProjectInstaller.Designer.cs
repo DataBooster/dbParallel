@@ -42,6 +42,7 @@
 			this.pumpServiceInstaller.DisplayName = "dbParallel Pump Service";
 			this.pumpServiceInstaller.ServiceName = "dbParallel.PumpService";
 			this.pumpServiceInstaller.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
+			this.pumpServiceInstaller.AfterInstall += new System.Configuration.Install.InstallEventHandler(this.pumpServiceInstaller_AfterInstall);
 			// 
 			// ProjectInstaller
 			// 

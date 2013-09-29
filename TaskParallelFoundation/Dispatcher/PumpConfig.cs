@@ -1,29 +1,26 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Data.Common;
-using System.Configuration;
 using DbParallel.Dispatcher.DbInterface;
+using DbParallel.Dispatcher.DataAccess;
 
 namespace DbParallel.Dispatcher
 {
 	public static class PumpConfig
 	{
-		private static DbProviderFactory _DbProviderFactory;
 		public static DbProviderFactory DbProviderFactory
 		{
-			get { return _DbProviderFactory; }
+			get { return ConfigHelper.DbProviderFactory; }
 		}
 
-		private static string _ConnectionString;
 		public static string ConnectionString
 		{
-			get { return _ConnectionString; }
+			get { return ConfigHelper.ConnectionString; }
 		}
 
-		private static string _DatabasePackage;
 		public static string DatabasePackage
 		{
-			get { return _DatabasePackage; }
+			get { return ConfigHelper.DatabasePackage; }
 		}
 
 		private static DbAppSettings _DbAppSettings;
@@ -70,17 +67,6 @@ namespace DbParallel.Dispatcher
 
 		static PumpConfig()
 		{
-			const string connectionSettingKey = "TPW_Database";
-			const string packageSettingKey = "TPW_Package";
-
-			ConnectionStringSettings connSetting = ConfigurationManager.ConnectionStrings[connectionSettingKey];
-			_DbProviderFactory = DbProviderFactories.GetFactory(connSetting.ProviderName);
-			_ConnectionString = connSetting.ConnectionString;
-
-			_DatabasePackage = ConfigurationManager.AppSettings[packageSettingKey];
-			if (_DatabasePackage == null)
-				_DatabasePackage = string.Empty;
-
 			_ParallelOption = new ParallelOptions();
 		}
 	}
