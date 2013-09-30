@@ -15,14 +15,14 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_6CF2679689D5C21EBCBF8341003B5F01"
+        "MsmKey" = "8:_565027FFE9B4107EB751C1F714BF12B1"
         "OwnerKey" = "8:_FA2DCB4F368F41C282605CDBF38AC603"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_B4891205F563DEA29E279E089B3226F6"
-        "OwnerKey" = "8:_EF8092354DD88F20E5268DFA933CC247"
+        "OwnerKey" = "8:_BAD26A7CE857B3F7EFD8FA779C3E0727"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -33,14 +33,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EF8092354DD88F20E5268DFA933CC247"
+        "MsmKey" = "8:_BAD26A7CE857B3F7EFD8FA779C3E0727"
         "OwnerKey" = "8:_FA2DCB4F368F41C282605CDBF38AC603"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_EF8092354DD88F20E5268DFA933CC247"
-        "OwnerKey" = "8:_6CF2679689D5C21EBCBF8341003B5F01"
+        "MsmKey" = "8:_BAD26A7CE857B3F7EFD8FA779C3E0727"
+        "OwnerKey" = "8:_565027FFE9B4107EB751C1F714BF12B1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,13 +58,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6CF2679689D5C21EBCBF8341003B5F01"
+        "OwnerKey" = "8:_565027FFE9B4107EB751C1F714BF12B1"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EF8092354DD88F20E5268DFA933CC247"
+        "OwnerKey" = "8:_BAD26A7CE857B3F7EFD8FA779C3E0727"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -98,6 +98,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -122,6 +135,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -180,14 +206,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6CF2679689D5C21EBCBF8341003B5F01"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_565027FFE9B4107EB751C1F714BF12B1"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:DbParallel.Dispatcher, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6CF2679689D5C21EBCBF8341003B5F01"
+                    "_565027FFE9B4107EB751C1F714BF12B1"
                     {
                     "Name" = "8:DbParallel.Dispatcher.dll"
                     "Attributes" = "3:512"
@@ -242,14 +268,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EF8092354DD88F20E5268DFA933CC247"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BAD26A7CE857B3F7EFD8FA779C3E0727"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:DbParallel.DataAccess, Version=1.1.0.1, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_EF8092354DD88F20E5268DFA933CC247"
+                    "_BAD26A7CE857B3F7EFD8FA779C3E0727"
                     {
                     "Name" = "8:DbParallel.DataAccess.dll"
                     "Attributes" = "3:512"
@@ -328,25 +354,25 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:PumpServiceSetup"
+        "ProductName" = "8:dbParallel Pump Service"
         "ProductCode" = "8:{03A08479-059A-4A29-AC82-16EFBAE956FE}"
-        "PackageCode" = "8:{442DCA5D-36AA-443A-8C32-ACEA26FB3E75}"
+        "PackageCode" = "8:{375164F2-512C-48BA-81EA-C828331B489C}"
         "UpgradeCode" = "8:{4163F026-557F-4EA0-8C14-ED5D0E7BC49F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
+        "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Default Company Name"
+        "Manufacturer" = "8:dbParallel"
         "ARPHELPTELEPHONE" = "8:"
-        "ARPHELPLINK" = "8:"
-        "Title" = "8:PumpServiceSetup"
+        "ARPHELPLINK" = "8:http://dbparallel.codeplex.com"
+        "Title" = "8:Database Task Parallel Foundation Pump Service"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Default Company Name"
+        "ARPCONTACT" = "8:Abel Cheng"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:"
+        "ARPCOMMENTS" = "8:Database Task Parallel Foundation Pump Service Setup"
+        "ARPURLINFOABOUT" = "8:http://dbparallel.codeplex.com"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
@@ -851,7 +877,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FA2DCB4F368F41C282605CDBF38AC603"
             {
-            "SourcePath" = "8:..\\PumpService\\obj\\Debug\\DbParallel.PumpService.exe"
+            "SourcePath" = "8:..\\PumpService\\obj\\Release\\DbParallel.PumpService.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_977315B6EE814F9390EF6A93B721C955"
