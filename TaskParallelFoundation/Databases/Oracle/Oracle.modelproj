@@ -63,10 +63,10 @@
     <Content Include="Scripts\1-Tables\15-TPW_SYS_ERROR.sql">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Scripts\2-Views\01-VIEW_TPW_PJOB.sql">
+    <Content Include="Scripts\2-Views\02-VIEW_TPW_PJOB.sql">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Scripts\2-Views\02-VIEW_TPW_TASK.sql">
+    <Content Include="Scripts\2-Views\01-VIEW_TPW_TASK.sql">
       <SubType>Content</SubType>
     </Content>
     <Content Include="Scripts\2-Views\03-VIEW_TPW_WK_LOG.sql">

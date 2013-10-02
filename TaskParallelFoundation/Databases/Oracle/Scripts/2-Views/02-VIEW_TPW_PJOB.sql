@@ -7,10 +7,23 @@ SELECT
 	J.EXPIRY_TIME,
 	J.START_TIME,
 	J.END_TIME,
+	NVL(F.FAILED_COUNT, 0)			AS FAILED_TASKS,
 	J.USER_APP,
 	J.USER_NAME,
 	J.DESCRIPTION_
 FROM
+	(
+		SELECT
+			PJOB_ID,
+			COUNT(*)			AS FAILED_COUNT
+		FROM
+			XYZ.VIEW_TPW_TASK
+		WHERE
+				ERROR_MESSAGE	IS NOT NULL
+			AND	TASK_ID			> 0
+		GROUP BY
+			PJOB_ID
+	)	F,
 	XYZ.TPW_WF_STATE				S,
 	(
 		SELECT
@@ -44,7 +57,8 @@ FROM
 			XYZ.TPW_PJOB_ARCHIVE
 	)	J
 WHERE
-	S.STATE_ID	= J.STATE_ID
+		F.PJOB_ID(+)	= J.PJOB_ID
+	AND	S.STATE_ID		= J.STATE_ID
 
 ----------------------------------------------------------------------------------------------------
 --

@@ -8,11 +8,11 @@ SELECT
 	J.EXPIRY_TIME,
 	J.START_TIME,
 	J.END_TIME,
+	ISNULL(F.FAILED_COUNT, 0)	AS FAILED_TASKS,
 	J.USER_APP,
 	J.USER_NAME,
 	J.DESCRIPTION_
 FROM
-	TPW_WF_STATE				S,
 	(
 		SELECT
 			PJOB_ID,
@@ -44,8 +44,26 @@ FROM
 		FROM
 			TPW_PJOB_ARCHIVE
 	)	J
-WHERE
-	S.STATE_ID	= J.STATE_ID;
+
+	INNER JOIN
+	TPW_WF_STATE	S
+	ON	(S.STATE_ID	= J.STATE_ID)
+
+	LEFT JOIN
+	(
+		SELECT
+			PJOB_ID,
+			COUNT(*)			AS FAILED_COUNT
+		FROM
+			VIEW_TPW_TASK
+		WHERE
+				ERROR_MESSAGE	!= N''
+			AND	TASK_ID			> 0
+		GROUP BY
+			PJOB_ID
+	)	F
+	ON	(F.PJOB_ID = J.PJOB_ID)
+;
 
 ----------------------------------------------------------------------------------------------------
 --
