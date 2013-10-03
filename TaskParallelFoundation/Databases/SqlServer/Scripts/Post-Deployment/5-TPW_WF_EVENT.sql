@@ -1,4 +1,7 @@
-﻿insert into TPW_WF_EVENT (EVENT_ID, ACTIVITY, EVENT_NAME, DESCRIPTION_)
+﻿IF NOT EXISTS (SELECT 1 FROM TPW_WF_EVENT)
+BEGIN
+
+insert into TPW_WF_EVENT (EVENT_ID, ACTIVITY, EVENT_NAME, DESCRIPTION_)
 values (1, 'TPW_PJOB', 'ADD_TASK', 'Add a parallel task.');
 
 insert into TPW_WF_EVENT (EVENT_ID, ACTIVITY, EVENT_NAME, DESCRIPTION_)
@@ -24,3 +27,5 @@ values (8, 'TPW_PJOB', 'EXPIRE', 'Expire a PJob.');
 
 insert into TPW_WF_EVENT (EVENT_ID, ACTIVITY, EVENT_NAME, DESCRIPTION_)
 values (9, 'TPW_PJOB', 'ARCHIVE', 'Archive the whole PJob.');
+
+END;
