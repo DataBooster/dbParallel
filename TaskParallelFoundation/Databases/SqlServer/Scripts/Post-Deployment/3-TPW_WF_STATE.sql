@@ -1,4 +1,7 @@
-﻿insert into TPW_WF_STATE (STATE_ID, ACTIVITY, STATE_NAME, IS_DONE, DESCRIPTION_)
+﻿IF NOT EXISTS (SELECT 1 FROM TPW_WF_STATE)
+BEGIN
+
+insert into TPW_WF_STATE (STATE_ID, ACTIVITY, STATE_NAME, IS_DONE, DESCRIPTION_)
 values (1, 'TPW_PJOB', 'CREATED', 0, 'The PJob has been initialized but has not yet been scheduled.');
 
 insert into TPW_WF_STATE (STATE_ID, ACTIVITY, STATE_NAME, IS_DONE, DESCRIPTION_)
@@ -30,3 +33,5 @@ values (10, 'TPW_PJOB', 'EXPIRED', 1, 'The PJob expired (be inactive too long).'
 
 insert into TPW_WF_STATE (STATE_ID, ACTIVITY, STATE_NAME, IS_DONE, DESCRIPTION_)
 values (11, 'TPW_PJOB', 'ARCHIVED', 1, 'The PJob life cycle has been ended.');
+
+END;
