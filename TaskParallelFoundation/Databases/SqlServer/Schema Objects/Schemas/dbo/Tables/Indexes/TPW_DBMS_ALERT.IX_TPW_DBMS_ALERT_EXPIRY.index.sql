@@ -1,4 +1,4 @@
-﻿CREATE INDEX IX_TPW_DBMS_ALERT_EXPIRY ON TPW_DBMS_ALERT (EXPIRY_TIME);
+﻿CREATE INDEX IX_TPW_DBMS_ALERT_EXPIRY ON dbo.TPW_DBMS_ALERT (EXPIRY_TIME);
 
 ----------------------------------------------------------------------------------------------------
 --

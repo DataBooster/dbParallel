@@ -2,7 +2,7 @@
 AS
 	SET NOCOUNT ON;
 
-	DELETE	FROM	TPW_DBMS_ALERT
+	DELETE	FROM	dbo.TPW_DBMS_ALERT
 	WHERE	EXPIRY_TIME	< GETDATE();
 
 ----------------------------------------------------------------------------------------------------

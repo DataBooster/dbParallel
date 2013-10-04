@@ -11,7 +11,7 @@ AS
 	IF @inError_Message IS NULL
 		SET	@inError_Message = N'';
 
-	UPDATE	TPW_TASK
+	UPDATE	dbo.TPW_TASK
 	SET
 		END_TIME		= GETDATE(),
 		ERROR_MESSAGE	= @inError_Message
@@ -22,7 +22,7 @@ AS
 
 	SET	@inError_Message = LEFT(N'[Task_ID=' + CAST(@inTask_ID AS NVARCHAR(10)) + N']' + @inError_Message, 1024);
 
-	EXEC @tReturn = TPW_SERVICE_ON_PJOB_EVENT @inPJob_ID, N'FAULT', 0, 1, @inError_Message;
+	EXEC @tReturn = dbo.TPW_SERVICE_ON_PJOB_EVENT @inPJob_ID, N'FAULT', 0, 1, @inError_Message;
 
 	RETURN @tReturn;
 

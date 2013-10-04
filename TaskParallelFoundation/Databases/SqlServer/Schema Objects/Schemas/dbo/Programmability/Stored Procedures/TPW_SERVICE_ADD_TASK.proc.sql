@@ -19,11 +19,11 @@ AS
 	ELSE
 		SET	@tLog = 0;
 
-	EXEC @tReturn = TPW_SERVICE_ON_PJOB_EVENT @inPJob_ID, N'ADD_TASK', @tLog;
+	EXEC @tReturn = dbo.TPW_SERVICE_ON_PJOB_EVENT @inPJob_ID, N'ADD_TASK', @tLog;
 	IF @tReturn < 0
 		RETURN	@tReturn;
 
-	INSERT INTO TPW_TASK (PJOB_ID, TASK_ID, COMMAND_TIMEOUT, DYNAMIC_SQL_STMT, DESCRIPTION_)
+	INSERT INTO dbo.TPW_TASK (PJOB_ID, TASK_ID, COMMAND_TIMEOUT, DYNAMIC_SQL_STMT, DESCRIPTION_)
 	VALUES (@inPJob_ID, @inTask_ID, @inCommand_Timeout, @inDynamic_SQL_STMT, @inDescription_);
 
 ----------------------------------------------------------------------------------------------------

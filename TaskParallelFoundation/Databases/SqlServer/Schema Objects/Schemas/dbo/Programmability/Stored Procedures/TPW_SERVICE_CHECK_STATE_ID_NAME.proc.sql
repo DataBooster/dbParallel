@@ -12,7 +12,7 @@ AS
 
 	IF @outState_Name IS NOT NULL AND @outActivity IS NOT NULL
 	BEGIN
-		SELECT @tState_ID = STATE_ID FROM TPW_WF_STATE WHERE STATE_NAME = @outState_Name AND ACTIVITY = @outActivity;
+		SELECT @tState_ID = STATE_ID FROM dbo.TPW_WF_STATE WHERE STATE_NAME = @outState_Name AND ACTIVITY = @outActivity;
 		IF @tState_ID IS NULL
 		BEGIN
 			RAISERROR(N'Invalid @outState_Name or @outActivity!', 11, 1);
@@ -30,7 +30,7 @@ AS
 	END
 	ELSE IF @outState_ID IS NOT NULL
 	BEGIN
-		SELECT @tActivity = ACTIVITY, @tState_Name = STATE_NAME FROM TPW_WF_STATE WHERE STATE_ID = @outState_ID;
+		SELECT @tActivity = ACTIVITY, @tState_Name = STATE_NAME FROM dbo.TPW_WF_STATE WHERE STATE_ID = @outState_ID;
 		IF @tState_Name IS NULL
 		BEGIN
 			RAISERROR(N'Invalid @outState_ID!', 11, 3);

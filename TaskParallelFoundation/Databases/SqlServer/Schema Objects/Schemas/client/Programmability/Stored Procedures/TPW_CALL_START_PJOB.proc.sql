@@ -18,7 +18,7 @@ AS
 	IF @tReturn < 0
 		RETURN @tReturn;
 
-	UPDATE	TPW_PJOB
+	UPDATE	dbo.TPW_PJOB
 	SET
 			SCHEDULED_TIME	= @inScheduled_Time,
 			EXPIRY_TIME		= @tExpiry_Time

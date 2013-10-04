@@ -10,20 +10,20 @@ AS
 	DECLARE	@tStatus		BIT;
 
 	SET	@tAlert_Name = dbo.TPW_SERVICE_GET_ALERT_NAME(@inPJob_ID);
-	EXEC TPW_DBMS_ALERT_REGISTER @tAlert_Name;
+	EXEC dbo.TPW_DBMS_ALERT_REGISTER @tAlert_Name;
 
 	SELECT	@tIs_Done = S.IS_DONE
 	FROM
-			TPW_WF_STATE	S,
-			TPW_PJOB		J
+			dbo.TPW_WF_STATE	S,
+			dbo.TPW_PJOB		J
 	WHERE
 			S.STATE_ID	= J.STATE_ID
 		AND	J.PJOB_ID	= @inPJob_ID;
 
 	IF @tIs_Done = 0
-		EXEC TPW_DBMS_ALERT_WAITONE @tAlert_Name, @tMessage OUTPUT, @tStatus OUTPUT;
+		EXEC dbo.TPW_DBMS_ALERT_WAITONE @tAlert_Name, @tMessage OUTPUT, @tStatus OUTPUT;
 
-	EXEC TPW_DBMS_ALERT_REMOVE @tAlert_Name;
+	EXEC dbo.TPW_DBMS_ALERT_REMOVE @tAlert_Name;
 
 ----------------------------------------------------------------------------------------------------
 --

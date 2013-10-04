@@ -6,7 +6,7 @@
 AS
 	SET NOCOUNT ON;
 
-	INSERT INTO TPW_SYS_ERROR (LOG_TIME, REFERENCE_, MESSAGE_)
+	INSERT INTO dbo.TPW_SYS_ERROR (LOG_TIME, REFERENCE_, MESSAGE_)
 	VALUES (GETDATE(), @inReference, @inMessage);
 
 ----------------------------------------------------------------------------------------------------

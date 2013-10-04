@@ -9,14 +9,14 @@ AS
 	SET	@tNow			= GETDATE();
 	SET	@tExpiry_Time	= DATEADD(hour, 12, @tNow);
 
-	UPDATE	TPW_DBMS_ALERT
+	UPDATE	dbo.TPW_DBMS_ALERT
 	SET		REFERENCE_COUNT	= REFERENCE_COUNT + 1,
 			LAST_REGISTER	= @tNow,
 			EXPIRY_TIME		= CASE WHEN @tExpiry_Time < EXPIRY_TIME THEN EXPIRY_TIME ELSE @tExpiry_Time END
 	WHERE	ALERT_NAME		= @inAlert_Name;
 
 	IF @@ROWCOUNT = 0
-		INSERT INTO	TPW_DBMS_ALERT (ALERT_NAME, ALERT_SIGNAL, REFERENCE_COUNT, FIRST_REGISTER, LAST_REGISTER, EXPIRY_TIME)
+		INSERT INTO	dbo.TPW_DBMS_ALERT (ALERT_NAME, ALERT_SIGNAL, REFERENCE_COUNT, FIRST_REGISTER, LAST_REGISTER, EXPIRY_TIME)
 		VALUES (@inAlert_Name, 0, 1, @tNow, @tNow, @tExpiry_Time);
 
 ----------------------------------------------------------------------------------------------------
