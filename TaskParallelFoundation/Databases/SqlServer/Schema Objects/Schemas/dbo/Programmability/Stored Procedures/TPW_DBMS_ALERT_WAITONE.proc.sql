@@ -11,7 +11,7 @@ AS
 	DECLARE	@tAlert_Signal	BIT;
 
 	SELECT	@tStatus_Polling_Interval = STRING_VALUE
-	FROM	TPW_PUMP_CONFIG
+	FROM	dbo.TPW_PUMP_CONFIG
 	WHERE	ELEMENT_NAME = N'STATUS_POLLING_INTERVAL';
 
 	SET		@tTimeout	= DATEADD(second, @inTimeout, GETDATE());
@@ -21,7 +21,7 @@ AS
 	BEGIN
 		SELECT	@tAlert_Signal	= ALERT_SIGNAL,
 				@outMessage		= ALERT_MESSAGE
-		FROM	TPW_DBMS_ALERT
+		FROM	dbo.TPW_DBMS_ALERT
 		WHERE	ALERT_NAME	= @inAlert_Name;
 
 		IF @tAlert_Signal = 0

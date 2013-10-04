@@ -1,4 +1,4 @@
-﻿CREATE VIEW VIEW_TPW_TASK
+﻿CREATE VIEW dbo.VIEW_TPW_TASK
 AS
 SELECT
 	PJOB_ID,
@@ -10,7 +10,7 @@ SELECT
 	END_TIME,
 	ERROR_MESSAGE
 FROM
-	TPW_TASK
+	dbo.TPW_TASK
 
 UNION ALL
 
@@ -24,7 +24,7 @@ SELECT
 	END_TIME,
 	ERROR_MESSAGE
 FROM
-	TPW_TASK_ARCHIVE
+	dbo.TPW_TASK_ARCHIVE
 ;
 
 ----------------------------------------------------------------------------------------------------

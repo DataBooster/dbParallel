@@ -9,18 +9,18 @@ AS
 	
 	SET	@tNow	= GETDATE();
 
-	UPDATE	TPW_PUMP_CONFIG
+	UPDATE	dbo.TPW_PUMP_CONFIG
 	SET		DATE_VALUE		= @tNow
 	WHERE	ELEMENT_NAME	= N'PRIMARY_BEAT';
 
-	EXEC @tReturn = TPW_SERVICE_ARCHIVE_PJOB;
+	EXEC @tReturn = dbo.TPW_SERVICE_ARCHIVE_PJOB;
 	IF @tReturn > 0
-		EXEC TPW_SERVICE_EXPIRE_PJOB;
+		EXEC dbo.TPW_SERVICE_EXPIRE_PJOB;
 
 	SELECT
 		PJOB_ID
 	FROM
-		VIEW_TPW_PJOB_STATE_MACHINE
+		dbo.VIEW_TPW_PJOB_STATE_MACHINE
 	WHERE
 			SCHEDULED_TIME	<= @tNow
 		AND EVENT_NAME		= N'RUN'			-- Can run
@@ -29,7 +29,7 @@ AS
 
 	SET	@outSwitch_To_Mode	= N'Primary';
 
-	EXEC TPW_SERVICE_SERVICE_PING 1;
+	EXEC dbo.TPW_SERVICE_SERVICE_PING 1;
 
 ----------------------------------------------------------------------------------------------------
 --

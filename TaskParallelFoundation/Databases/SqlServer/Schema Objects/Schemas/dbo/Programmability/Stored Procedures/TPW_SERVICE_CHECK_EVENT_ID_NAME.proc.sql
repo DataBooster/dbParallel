@@ -12,7 +12,7 @@ AS
 
 	IF @outEvent_Name IS NOT NULL AND @outActivity IS NOT NULL
 	BEGIN
-		SELECT @tEvent_ID = EVENT_ID FROM TPW_WF_EVENT WHERE EVENT_NAME = @outEvent_Name AND ACTIVITY = @outActivity;
+		SELECT @tEvent_ID = EVENT_ID FROM dbo.TPW_WF_EVENT WHERE EVENT_NAME = @outEvent_Name AND ACTIVITY = @outActivity;
 		IF @tEvent_ID IS NULL
 		BEGIN
 			RAISERROR(N'Invalid @outEvent_Name or @outActivity!', 12, 11);
@@ -30,7 +30,7 @@ AS
 	END
 	ELSE IF @outEvent_ID IS NOT NULL
 	BEGIN
-		SELECT @tActivity = ACTIVITY, @tEvent_Name = EVENT_NAME FROM TPW_WF_EVENT WHERE EVENT_ID = @outEvent_ID;
+		SELECT @tActivity = ACTIVITY, @tEvent_Name = EVENT_NAME FROM dbo.TPW_WF_EVENT WHERE EVENT_ID = @outEvent_ID;
 		IF @tEvent_Name IS NULL
 		BEGIN
 			RAISERROR(N'Invalid @outEvent_ID!', 12, 13);

@@ -6,11 +6,11 @@ AS
 	/* SET NOCOUNT ON */
 	DECLARE	@tReturn	INT;
 
-	EXEC @tReturn = TPW_SERVICE_ON_PJOB_EVENT @inPJob_ID, N'RUN';
+	EXEC @tReturn = dbo.TPW_SERVICE_ON_PJOB_EVENT @inPJob_ID, N'RUN';
 	IF @tReturn < 0
 		RETURN @tReturn;
 
-	UPDATE	TPW_PJOB
+	UPDATE	dbo.TPW_PJOB
 	SET		START_TIME	= GETDATE()
 	WHERE	PJOB_ID		= @inPJob_ID;
 
@@ -19,7 +19,7 @@ AS
 		TASK_ID,
 		COMMAND_TIMEOUT
 	FROM
-		TPW_TASK
+		dbo.TPW_TASK
 	WHERE
 		PJOB_ID	= @inPJob_ID;
 

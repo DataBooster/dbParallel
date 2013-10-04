@@ -1,4 +1,4 @@
-﻿CREATE VIEW VIEW_TPW_WK_LOG
+﻿CREATE VIEW dbo.VIEW_TPW_WK_LOG
 AS
 SELECT
 	L.LOG_TIME,
@@ -17,7 +17,7 @@ FROM
 			STATE_ID_NEW,
 			MESSAGE_
 		FROM
-			TPW_WK_LOG
+			dbo.TPW_WK_LOG
 		UNION ALL
 		SELECT
 			LOG_TIME,
@@ -27,13 +27,13 @@ FROM
 			STATE_ID_NEW,
 			MESSAGE_
 		FROM
-			TPW_WK_LOG_ARCHIVE
-	)								L
-	INNER JOIN	TPW_WF_STATE		N
+			dbo.TPW_WK_LOG_ARCHIVE
+	)									L
+	INNER JOIN	dbo.TPW_WF_STATE		N
 	ON	(N.STATE_ID	= L.STATE_ID_NEW)
-	LEFT OUTER JOIN	TPW_WF_STATE	O
+	LEFT OUTER JOIN	dbo.TPW_WF_STATE	O
 	ON	(O.STATE_ID	= L.STATE_ID_OLD)
-	LEFT OUTER JOIN	TPW_WF_EVENT	E
+	LEFT OUTER JOIN	dbo.TPW_WF_EVENT	E
 	ON	(E.EVENT_ID	= L.EVENT_ID);
 
 ----------------------------------------------------------------------------------------------------

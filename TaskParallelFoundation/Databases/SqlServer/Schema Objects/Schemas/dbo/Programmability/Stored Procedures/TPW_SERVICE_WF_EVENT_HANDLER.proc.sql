@@ -11,11 +11,11 @@ AS
 
 	IF @outEvent_ID IS NULL
 		SELECT	@outNew_State = STATE_ID_NEW, @outEvent_ID = EVENT_ID
-		FROM	TPW_WF_STATE_MACHINE
+		FROM	dbo.TPW_WF_STATE_MACHINE
 		WHERE	EVENT_NAME = @inEvent_Name AND STATE_ID_OLD = @inCurrent_State;
 	ELSE
 		SELECT	@outNew_State = STATE_ID_NEW
-		FROM	TPW_WF_STATE_MACHINE
+		FROM	dbo.TPW_WF_STATE_MACHINE
 		WHERE	EVENT_ID = @outEvent_ID AND STATE_ID_OLD = @inCurrent_State;
 
 	IF @outNew_State IS NULL

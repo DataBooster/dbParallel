@@ -13,8 +13,8 @@ AS
 		(
 			SELECT 1
 			FROM
-				TPW_WF_STATE	O,
-				TPW_WF_STATE	N
+				dbo.TPW_WF_STATE	O,
+				dbo.TPW_WF_STATE	N
 			WHERE
 					O.STATE_ID	= @inOld_State_ID
 				AND	N.STATE_ID	= @inNew_State_ID
@@ -23,7 +23,7 @@ AS
 		)
 		BEGIN
 			SET	@tAlert_Name	= dbo.TPW_SERVICE_GET_ALERT_NAME(@inPJob_ID);
-			EXEC TPW_DBMS_ALERT_SIGNAL @tAlert_Name, @inEvent_Name
+			EXEC dbo.TPW_DBMS_ALERT_SIGNAL @tAlert_Name, @inEvent_Name
 		END;
 
 ----------------------------------------------------------------------------------------------------
