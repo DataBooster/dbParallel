@@ -52,6 +52,20 @@
 </ol>
 <p>(XYZ is the schema name, it should be replaced by your schema name)</p>
 <p>Open the source code of Oracle package TPW_CALL <em>(or SQL Server stored procedures with prefix TPW_CALL_)</em> for detail parameters.</p>
+<p><strong>Status Inquiry</strong></p>
+<ul>
+<li>VIEW_TPW_PJOB<br />Displays pJobs' current status:<br /><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbparallel&amp;DownloadId=740495" alt="" />
+<ul>
+<li>PJOB_STATE<br />Just current state. <em>(VIEW_TPW_WK_LOG provides historical state transitions)</em><br />Each pJob is born as CREATED state, and dies as ARCHIVED state. The real time state is visible during pJob's lifetime. Every pJob, irrespective of high or low ... the final state is equal - <span style="color: #808080;">ARCHIVED</span>.</li>
+<li>TASK_COUNT<br />The total number of parallel tasks contained in the pJob.<br /><em><span style="color: #808080;">(not including any callback task - neither for success nor for fail)</span></em></li>
+<li>START_TIME<br />The actual time of when the pJob get started.</li>
+<li>END_TIME<br />The actual time of when all parallel tasks of the pJob get completed.</li>
+<li>FAILED_TASKS<br />How many parallel tasks failed under the pJob.<br /><em><span style="color: #808080;">(not including any callback task - neither for success nor for fail)</span></em></li>
+</ul>
+</li>
+<li>VIEW_TPW_TASK<br />Detail execution information about every parallel tasks.<br /><span style="color: #808080;">(also including callback tasks - for success and for fail)</span></li>
+<li>VIEW_TPW_WK_LOG<br />History of pJobs' internal state transition.<br /><em><span style="color: #808080;">[Old State] &gt;==Event==&gt; [New State]</span></em></li>
+</ul>
 <p><strong>How It's Made</strong></p>
 <ul>
 <li><span style="text-decoration: underline;">Database Side</span><br />Each pJob is added into the Scheduler, and then the State Manager controls every stage in the lifecycle of the pJob.</li>
@@ -73,7 +87,7 @@
 <ul>
 <li>Supported Databases:
 <ul>
-<li>Oracle (dev and test on version 11g R1 and R2, hasn't try on earlier version);</li>
+<li>Oracle <span style="color: #808080;">(dev and test on version 11g R1 and R2, hasn't try on earlier version)</span>;</li>
 <li>SQL Server 2005 or later version;</li>
 </ul>
 </li>
