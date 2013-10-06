@@ -25,6 +25,13 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SqlServer", "Databases\SqlS
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PumpServiceSetup", "PumpServiceSetup\PumpServiceSetup.vdproj", "{F333E657-06DC-404D-ADA7-B2406F1ACCE7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{69AA8AC1-5B44-4D0E-862B-845BE7CD256D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 7
@@ -84,7 +91,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{6726A98E-44D9-4740-A20E-DCC517318B6C} = {B5A1CBE3-FEBD-4C7B-8C08-E2EA612D0F71}
 		{CD1CCA70-E67E-4CDA-BC1D-54D8F2BA0780} = {B5A1CBE3-FEBD-4C7B-8C08-E2EA612D0F71}
 		{6726A98E-44D9-4740-A20E-DCC517318B6C} = {B5A1CBE3-FEBD-4C7B-8C08-E2EA612D0F71}
 	EndGlobalSection
