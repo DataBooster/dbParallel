@@ -1,0 +1,149 @@
+<div class="wikidoc">
+<p><strong>Project Description</strong><br>
+The dbParallel is a Database Task Parallel Foundation that provides database developers an application level support for parallel programming. Being distinct from Oracle 11g R2's DBMS_PARALLEL_EXECUTE parallelism within a query by chunks, dbParallel works more
+ like a .NET Task Parallel Library implemented on database side, it handles the partitioning of the asynchronous job, the scheduling of tasks, state management, and other low-level details in a lightweight implementation.</p>
+<div><strong>Get started</strong><br>
+A quick example (for Oracle Version)</div>
+<div style="color:black; background-color:white">
+<pre><span style="color:blue">PROCEDURE</span> TEST_1
+<span style="color:blue">AS</span>
+    tPJob_ID    PLS_INTEGER;
+    tSQL        VARCHAR2(256);
+<span style="color:blue">BEGIN</span>
+    tPJob_ID := <span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>CREATE_PJOB(<span style="color:#a31515">'App1'</span>, <span style="color:#a31515">'User1'</span>, <span style="color:#a31515">'This is test1.'</span>);
+
+    tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color:#a31515">'DBMS_LOCK.SLEEP(%d)'</span>, 10);
+    <span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>ADD_TASK(tPJob_ID, tSQL, 60, <span style="color:#a31515">'Task1 sleep for 10 seconds.'</span>);
+    
+    tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color:#a31515">'DBMS_LOCK.SLEEP(%d)'</span>, 70);
+    <span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>ADD_TASK(tPJob_ID, tSQL, 60, <span style="color:#a31515">'Task2 sleep for 70 seconds.'</span>);
+
+    tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color:#a31515">'DBMS_LOCK.SLEEP(%d)'</span>, 30);
+    <span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>ADD_TASK(tPJob_ID, tSQL, 60, <span style="color:#a31515">'Task3 sleep for 30 seconds.'</span>);
+
+    tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color:#a31515">'DBMS_LOCK.SLEEP(%d)'</span>, 70);
+    <span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>ADD_TASK(tPJob_ID, tSQL, 120, <span style="color:#a31515">'Task4 sleep for 70 seconds.'</span>);
+
+    tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color:#a31515">'DBMS_LOCK.SLEEP(%d)'</span>, 15);
+    <span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>ADD_CALLBACK_FOR_SUCCESS(tPJob_ID, tSQL, 180, <span style="color:#a31515">'Sleep for 15s if all success.'</span>);
+
+    tSQL := UTL_LMS.FORMAT_MESSAGE(<span style="color:#a31515">'DBMS_LOCK.SLEEP(%d)'</span>, 25);
+    <span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>ADD_CALLBACK_FOR_FAIL(tPJob_ID, tSQL, 180, <span style="color:#a31515">'Sleep for 25s if fail.'</span>);
+
+    <span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>START_PJOB(tPJob_ID);
+
+    DBMS_OUTPUT.PUT_LINE(<span style="color:#a31515">'New PJob_ID#'</span> || tPJob_ID);
+<span style="color:blue">END</span> TEST_1;</pre>
+</div>
+<div>The example executes Task1-4 in parallel and when everything is finished, the callback task is executed
+<em>(in this case callback will be a fail since task 2 failed - timeout)</em>.<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbparallel&DownloadId=370939" alt="" width="635" height="230" style="vertical-align:middle"></div>
+<p>&nbsp;</p>
+<p><strong>Features</strong><br>
+Following API list of current version reflects the features:</p>
+<ol>
+<li><span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>CREATE_PJOB<br>
+Each of the above sample processing units are called a PJob. PJob represents an asynchronous operation. This method returns a pJob Id for below methods (2, 3, 4, 5, 6).
+</li><li><span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>ADD_TASK<br>
+Each pJob contains one or more parallel tasks. Each task is a dynamic SQL. Call the ADD_TASK multiple times to add every parallel tasks into the pJob.
+</li><li><span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>ADD_CALLBACK_FOR_SUCCESS<br>
+This is a optional method. Since a pJob is asynchronous, the callback Task is called to execute a continuation when all the parallel Tasks successfully completed.
+</li><li><span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>ADD_CALLBACK_FOR_FAIL<br>
+This is a optional method. Similar but opposite to previous callback for success, the callback Task for fail is called to execute a continuation when all the parallel Tasks completed but any of them throw out database exception(s).
+</li><li><span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>START_PJOB<br>
+Starts the pJob, scheduling it for execution. </li><li><span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>TRY_CANCEL_PJOB<br>
+Try to cancel a scheduled pJob if it hasn't begin to execute. </li><li><span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>START_NEW_SINGLE_TASK<br>
+This method encapsulates a series of steps for conveniently creating and starting single task and callback task.
+</li><li><span style="color:#c0c0c0">XYZ.</span><span style="color:#808080">TPW_CALL.</span>WAIT_PJOB<br>
+Waits for all provided Tasks (parallel subtasks and callback task) of a pJob to complete execution.<br>
+To support this method, Oracle version utilizes the signaling mechanism come from SYS.DBMS_ALERT package; SQL Serverv version imitates it by a polling loop at present.
+</li></ol>
+<p>(XYZ is the schema name, it should be replaced by your schema name)</p>
+<p>Open the source code of Oracle package TPW_CALL <em>(or SQL Server stored procedures with prefix TPW_CALL_)</em> for detail parameters.</p>
+<p><strong>Status Inquiry</strong></p>
+<ul>
+<li>VIEW_TPW_PJOB<br>
+Displays pJobs' current status:<br>
+<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbparallel&DownloadId=740495" alt="">
+<ul>
+<li>PJOB_STATE<br>
+Just current state. <em>(VIEW_TPW_WK_LOG provides historical state transitions)</em><br>
+Each pJob is born as CREATED state, and dies as ARCHIVED state. The real time state is visible during pJob's lifetime. Every pJob, irrespective of high or low ... the final state is equal -
+<span style="color:#808080">ARCHIVED</span>. </li><li>TASK_COUNT<br>
+The total number of parallel tasks contained in the pJob.<br>
+<em><span style="color:#808080">(not including any callback task - neither for success nor for fail)</span></em>
+</li><li>START_TIME<br>
+The actual time of when the pJob get started. </li><li>END_TIME<br>
+The actual time of when all parallel tasks of the pJob get completed. </li><li>FAILED_TASKS<br>
+How many parallel tasks failed under the pJob.<br>
+<em><span style="color:#808080">(not including any callback task - neither for success nor for fail)</span></em>
+</li></ul>
+</li><li>VIEW_TPW_TASK<br>
+Detail execution information about every parallel tasks.<br>
+<span style="color:#808080">(also including callback tasks - for success and for fail)</span>
+</li><li>VIEW_TPW_WK_LOG<br>
+History of pJobs' internal state transition.<br>
+<em><span style="color:#808080">[Old State] &gt;==Event==&gt; [New State]</span></em>
+</li></ul>
+<p><strong>How It's Made</strong></p>
+<ul>
+<li><span style="text-decoration:underline">Database Side</span><br>
+Each pJob is added into the Scheduler, and then the State Manager controls every stage in the lifecycle of the pJob.
+</li><li><span style="text-decoration:underline">Windows Service Side</span><br>
+At least one Pump Service must reside in Windows Services (or other hosting environment) act as a dispatcher, as shown in the following figure:
+</li></ul>
+<div style="padding-left:30px"><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbparallel&DownloadId=371725" alt="" width="671" height="349" style="vertical-align:middle"></div>
+<p style="padding-left:30px">The dispatcher executes each of the provided tasks, possibly in parallel. No guarantees are made about the order in which the tasks execute or how many degree of parallelism. All tuning settings are located in TPW_PUMP_CONFIG table.<br>
+Each Task of a pJob is actually executed in the database through its separate connection. In other words, each Task runs in a different database session. Temporary table and transaction can not be expected to cross Tasks.</p>
+<p style="padding-left:30px"><em><span style="text-decoration:underline">Service Mode</span> - (Primary Mode | Standby Mode)</em></p>
+<div style="padding-left:30px">A Pump Service always starts up in Standby Mode. Multiple Standby Services can keep running for the same database, one of them will switch to Primary Mode when none Primary Service is active.</div>
+<div style="padding-left:150px"><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbparallel&DownloadId=371727" alt="" width="577" height="387" style="vertical-align:middle"></div>
+<p><strong>Security Model</strong></p>
+<ul>
+<li>To create or operate a pJob:<br>
+The user must have EXECUTE privilege on the package TPW_CALL - for Oracle version;<br>
+<em>(Underlying stored procedures with prefix of &quot;TPW_CALL_&quot; for SQL Server version)</em>
+</li><li>To execute Task's SQL:<br>
+As a ultimate executor, the security account of Pump Service must have privileges to execute Tasks' SQL.
+</li></ul>
+<p><strong>Applicability</strong></p>
+<p style="padding-left:30px">The original intention of dbParallel is designed for time consuming database processing with one or more independent tasks can run concurrently. Not all processing is suitable for parallelization; for example, if a batch job performs
+ only a small amount of work on each subtask, or it doesn't run for more than one second, then the overhead of parallelization can cause the processing to run more slowly. Besides, some special attention (e.g. locks, deadlocks, and race conditions) can not
+ be ignored.</p>
+<p><strong>System Requirements</strong></p>
+<ul>
+<li>Supported Databases:
+<ul>
+<li>Oracle <span style="color:#808080">(dev and test on version 11g R1 and R2, hasn't try on earlier version)</span>;
+</li><li>SQL Server 2005 or later version; </li></ul>
+</li><li>Windows Service:
+<ul>
+<li>.NET Framework 4.0 Client Profile or higher versions </li></ul>
+</li><li>ADO.NET Provider:
+<ul>
+<li>Oracle
+<ul>
+<li>ODP.NET Managed Driver </li><li><em>Or</em> &nbsp; - ODP.NET 4 </li><li><em>Or</em> &nbsp; - DataDirect Connect for ADO.NET v3.5<br>
+<em>(the provider can be easily replaced by other provider for Oracle with the source code)</em>
+</li></ul>
+</li><li>SQL Server
+<ul>
+<li>.NET Framework build-in SqlClient provider. </li></ul>
+</li></ul>
+</li><li>Source Code:
+<ul>
+<li>Visual Studio 2010<a title="Microsoft Visual Studio 2010 Service Pack 1" href="http://www.microsoft.com/en-us/download/details.aspx?id=23691" target="_blank">SP1</a> or later versions
+</li><li><a title="Microsoft SQL Server Data Tools" href="http://msdn.microsoft.com/en-us/data/hh297027" target="_blank">SQL Server Data Tools (SSDT)</a>
+</li><li><a title="Installing NuGet" href="http://docs.nuget.org/docs/start-here/installing-nuget" target="_blank">NuGet Package Manager</a>
+</li></ul>
+</li></ul>
+<p style="padding-left:30px"><em>At present the dbParallel only support Oracle and SQL Server.</em></p>
+<p><strong>Contributions</strong></p>
+<ul>
+<li>Welcome all feedback through the CodePlex project (through comments, patches, or items in the Issue Tracker);
+</li></ul>
+<p><strong>Support</strong></p>
+<div style="padding-left:30px">Feel free to use the source in your apps, and products.<br>
+<br>
+This project is developed in personal time, the source code support can be available only at night - Easten Time (US &amp; Canada).</div>
+</div><div class="ClearBoth"></div>
