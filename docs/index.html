@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="https://download-codeplex.sec.s-msft.com/css/v21050/i2036743/StyleSheet.ashx" id="MasterCss" rel="stylesheet" type="text/css" />
+<title>Database Task Parallel Foundation - dbParallel for Oracle &#38; SQL Server</title>
+</head>
+<body>
+<h1 class="text_only"><a href="https://github.com/DataBooster/dbParallel" target="_blank">Database Task Parallel Foundation - dbParallel for Oracle &#38; SQL Server</a></h1>
+<hr/>
 <div class="wikidoc">
 <p><strong>Project Description</strong><br>
 The dbParallel is a Database Task Parallel Foundation that provides database developers an application level support for parallel programming. Being distinct from Oracle 11g R2's DBMS_PARALLEL_EXECUTE parallelism within a query by chunks, dbParallel works more
@@ -37,7 +47,7 @@ A quick example (for Oracle Version)</div>
 </div>
 <div>The example executes Task1-4 in parallel and when everything is finished, the callback task is executed
 <em>(in this case callback will be a fail since task 2 failed - timeout)</em>.<br>
-<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbparallel&DownloadId=370939" alt="" width="635" height="230" style="vertical-align:middle"></div>
+<img src="Home_example1.png" width="635" height="230" style="vertical-align:middle"></div>
 <p>&nbsp;</p>
 <p><strong>Features</strong><br>
 Following API list of current version reflects the features:</p>
@@ -64,7 +74,7 @@ To support this method, Oracle version utilizes the signaling mechanism come fro
 <ul>
 <li>VIEW_TPW_PJOB<br>
 Displays pJobs' current status:<br>
-<img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbparallel&DownloadId=740495" alt="">
+<img src="Home_VIEW_TPW_PJOB.png" alt="">
 <ul>
 <li>PJOB_STATE<br>
 Just current state. <em>(VIEW_TPW_WK_LOG provides historical state transitions)</em><br>
@@ -92,12 +102,12 @@ Each pJob is added into the Scheduler, and then the State Manager controls every
 </li><li><span style="text-decoration:underline">Windows Service Side</span><br>
 At least one Pump Service must reside in Windows Services (or other hosting environment) act as a dispatcher, as shown in the following figure:
 </li></ul>
-<div style="padding-left:30px"><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbparallel&DownloadId=371725" alt="" width="671" height="349" style="vertical-align:middle"></div>
+<div style="padding-left:30px"><img src="Home_WorkPrinciple1.png" width="671" height="349" style="vertical-align:middle"></div>
 <p style="padding-left:30px">The dispatcher executes each of the provided tasks, possibly in parallel. No guarantees are made about the order in which the tasks execute or how many degree of parallelism. All tuning settings are located in TPW_PUMP_CONFIG table.<br>
 Each Task of a pJob is actually executed in the database through its separate connection. In other words, each Task runs in a different database session. Temporary table and transaction can not be expected to cross Tasks.</p>
 <p style="padding-left:30px"><em><span style="text-decoration:underline">Service Mode</span> - (Primary Mode | Standby Mode)</em></p>
 <div style="padding-left:30px">A Pump Service always starts up in Standby Mode. Multiple Standby Services can keep running for the same database, one of them will switch to Primary Mode when none Primary Service is active.</div>
-<div style="padding-left:150px"><img src="http://download-codeplex.sec.s-msft.com/Download?ProjectName=dbparallel&DownloadId=371727" alt="" width="577" height="387" style="vertical-align:middle"></div>
+<div style="padding-left:150px"><img src="Home_WorkPrinciple2.png" width="577" height="387" style="vertical-align:middle"></div>
 <p><strong>Security Model</strong></p>
 <ul>
 <li>To create or operate a pJob:<br>
@@ -147,3 +157,5 @@ As a ultimate executor, the security account of Pump Service must have privilege
 <br>
 This project is developed in personal time, the source code support can be available only at night - Easten Time (US &amp; Canada).</div>
 </div><div class="ClearBoth"></div>
+</body>
+</html>
